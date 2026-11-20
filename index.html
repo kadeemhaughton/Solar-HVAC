@@ -1,0 +1,1830 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>try{var _t=localStorage.getItem("cs-theme");document.documentElement.setAttribute("data-theme",(_t==="dark"||_t==="light")?_t:"light");}catch(e){document.documentElement.setAttribute("data-theme","light");}</script>
+<title>Cascade Solar + Air - Finance Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#eef2f7; --bg2:#e6ecf4; --surface:#ffffff; --surface2:#fbfcfe; --raised:#f3f6fa;
+    --ink:#0c1424; --ink2:#334155; --muted:#5e6b7e; --faint:#93a0b2;
+    --line:#e2e8f1; --line2:#eef2f8;
+    --side:#0a1322; --side2:#111f38; --side-ink:#d6dfec; --side-muted:#76829c; --side-hover:#15223c; --side-active:#1b2c4c; --side-line:#213353;
+    --brand:#1f84d6; --brand2:#17afc4; --brand-ink:#ffffff; --brand-soft:#e4f2fb; --brand-line:#c0e2f3;
+    --solar:#e5942a; --solar2:#ef7420; --solar-soft:#fcefdb; --solar-line:#f3d7a8;
+    --good:#0a8f5b; --good-bg:#e3f6ed; --warn:#b4720a; --warn-bg:#fcf0d7; --bad:#c2342f; --bad-bg:#fdeae8; --violet:#6b44d9; --violet-bg:#eee8fb;
+    --t-solar:#e5942a; --t-hvac:#1296d8; --t-plumb:#3f66e0; --t-pool:#0ba39a; --t-elec:#7c53e6;
+    --shadow:0 1px 2px rgba(13,22,40,.05), 0 2px 10px rgba(13,22,40,.05);
+    --shadow-lg:0 14px 40px rgba(13,22,40,.12), 0 3px 10px rgba(13,22,40,.06);
+    --ring:rgba(31,132,214,.28);
+    --glow-solar:rgba(229,148,42,.16); --glow-cool:rgba(23,175,196,.14);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#070b12; --bg2:#0b1019; --surface:#111826; --surface2:#0e1522; --raised:#18212f;
+    --ink:#eef3f9; --ink2:#c7d1df; --muted:#8795a8; --faint:#5d6a7d;
+    --line:#212d3e; --line2:#18212f;
+    --side:#05080e; --side2:#0a1019; --side-ink:#cdd7e5; --side-muted:#6a7891; --side-hover:#111a28; --side-active:#15223a; --side-line:#1b2535;
+    --brand:#33a6df; --brand2:#2ad0d2; --brand-ink:#04151d; --brand-soft:#0d2635; --brand-line:#1d4656;
+    --solar:#f6b53a; --solar2:#ff8a3c; --solar-soft:#241a0c; --solar-line:#4a3415;
+    --good:#3fc48a; --good-bg:#0e2419; --warn:#dca044; --warn-bg:#2a2010; --bad:#e8726b; --bad-bg:#2c1513; --violet:#a98ae6; --violet-bg:#1f1833;
+    --t-solar:#f6b53a; --t-hvac:#38bdf8; --t-plumb:#5b84f0; --t-pool:#2cd4cf; --t-elec:#a78bfa;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 4px 18px rgba(0,0,0,.30);
+    --shadow-lg:0 20px 55px rgba(0,0,0,.55), 0 6px 18px rgba(0,0,0,.40);
+    --ring:rgba(51,166,223,.35);
+    --glow-solar:rgba(246,181,58,.16); --glow-cool:rgba(42,208,210,.13);
+    color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#070b12; --bg2:#0b1019; --surface:#111826; --surface2:#0e1522; --raised:#18212f;
+    --ink:#eef3f9; --ink2:#c7d1df; --muted:#8795a8; --faint:#5d6a7d;
+    --line:#212d3e; --line2:#18212f;
+    --side:#05080e; --side2:#0a1019; --side-ink:#cdd7e5; --side-muted:#6a7891; --side-hover:#111a28; --side-active:#15223a; --side-line:#1b2535;
+    --brand:#33a6df; --brand2:#2ad0d2; --brand-ink:#04151d; --brand-soft:#0d2635; --brand-line:#1d4656;
+    --solar:#f6b53a; --solar2:#ff8a3c; --solar-soft:#241a0c; --solar-line:#4a3415;
+    --good:#3fc48a; --good-bg:#0e2419; --warn:#dca044; --warn-bg:#2a2010; --bad:#e8726b; --bad-bg:#2c1513; --violet:#a98ae6; --violet-bg:#1f1833;
+    --t-solar:#f6b53a; --t-hvac:#38bdf8; --t-plumb:#5b84f0; --t-pool:#2cd4cf; --t-elec:#a78bfa;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 4px 18px rgba(0,0,0,.30);
+    --shadow-lg:0 20px 55px rgba(0,0,0,.55), 0 6px 18px rgba(0,0,0,.40);
+    --ring:rgba(51,166,223,.35);
+    --glow-solar:rgba(246,181,58,.16); --glow-cool:rgba(42,208,210,.13);
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{background:var(--bg)}
+  body{background:transparent; color:var(--ink); font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; font-size:13.5px; line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden}
+  body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; background:
+      radial-gradient(1100px 520px at 12% -8%, var(--glow-solar), transparent 60%),
+      radial-gradient(1000px 560px at 104% 2%, var(--glow-cool), transparent 55%),
+      radial-gradient(900px 700px at 50% 120%, var(--glow-cool), transparent 60%),
+      var(--bg)}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .disp{font-family:"Sora","Inter",system-ui,sans-serif; letter-spacing:-.4px}
+  .num{font-variant-numeric:tabular-nums}
+  button{font-family:inherit}
+  a{color:inherit}
+  ::selection{background:var(--brand-soft); color:var(--ink)}
+  .view{display:none}
+  .view.active{display:block}
+  @keyframes rise{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+  @keyframes glowpulse{0%,100%{opacity:.7} 50%{opacity:1}}
+  @media (prefers-reduced-motion:no-preference){
+    .view.active .kpis>*{animation:rise .42s cubic-bezier(.2,.7,.2,1) both}
+    .view.active .kpis>*:nth-child(2){animation-delay:.05s}
+    .view.active .kpis>*:nth-child(3){animation-delay:.1s}
+    .view.active .kpis>*:nth-child(4){animation-delay:.15s}
+    .view.active>.card,.view.active>.two{animation:rise .5s cubic-bezier(.2,.7,.2,1) both; animation-delay:.12s}
+  }
+
+  .app{display:flex; min-height:100vh; align-items:stretch}
+
+  /* Sidebar */
+  .side{width:244px; flex:none; background:linear-gradient(180deg,var(--side),var(--side2)); color:var(--side-ink); position:sticky; top:0; align-self:flex-start; height:100vh; overflow-y:auto; display:flex; flex-direction:column; padding:18px 12px; padding-left:max(12px,env(safe-area-inset-left,0px))}
+  .brand{display:flex; align-items:center; gap:12px; padding:6px 8px 18px; margin-bottom:6px; border-bottom:1px solid var(--side-line)}
+  .brand .mk{flex:none; width:38px; height:38px; border-radius:11px; background:linear-gradient(145deg, #ffd880 0%, var(--solar) 48%, var(--solar2) 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(246,160,40,.45), inset 0 1px 0 rgba(255,255,255,.4); position:relative}
+  .brand .mk::after{content:""; position:absolute; inset:0; border-radius:11px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .brand .mk svg{width:21px; height:21px; position:relative}
+  .brand .nm{font-family:"Sora","Inter",sans-serif; font-weight:700; font-size:14.5px; color:#fff; letter-spacing:-.1px; line-height:1.12}
+  .brand .nm small{display:block; font-family:"Inter",sans-serif; font-weight:600; font-size:9.5px; color:var(--side-muted); letter-spacing:1.4px; margin-top:3px; text-transform:uppercase}
+  .nav-grp{margin-top:14px}
+  .nav-lab{font-size:9.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--side-muted); padding:0 10px; margin-bottom:6px}
+  .nav-i{display:flex; align-items:center; gap:11px; width:100%; text-align:left; background:none; border:0; color:var(--side-ink); cursor:pointer; padding:8px 11px; border-radius:8px; font-size:13px; font-weight:500; position:relative; transition:background .15s, color .15s}
+  .nav-i:hover{background:var(--side-hover)}
+  .nav-i.on{background:linear-gradient(90deg, var(--side-active), rgba(246,181,58,.08)); color:#fff}
+  .nav-i.on::before{content:""; position:absolute; left:-12px; top:7px; bottom:7px; width:3px; border-radius:0 3px 3px 0; background:linear-gradient(180deg,var(--solar),var(--solar2)); box-shadow:0 0 12px rgba(246,160,40,.65)}
+  .nav-i .ic{flex:none; width:17px; height:17px; color:var(--side-muted); display:flex; transition:color .15s}
+  .nav-i:hover .ic{color:var(--side-ink)}
+  .nav-i.on .ic{color:var(--solar)}
+  .nav-i .ic svg{width:17px; height:17px}
+  .nav-i .ct{margin-left:auto; font-size:10.5px; font-weight:600; background:var(--bad); color:#fff; border-radius:20px; padding:1px 7px; min-width:18px; text-align:center}
+  .nav-i .ct.mut{background:var(--side-hover); color:var(--side-muted)}
+  .side-foot{margin-top:auto; padding:14px 10px 2px; border-top:1px solid var(--side-line); color:var(--side-muted); font-size:10.5px; line-height:1.6}
+
+  /* Body + topbar */
+  .body{flex:1; min-width:0; display:flex; flex-direction:column}
+  .topbar{position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--surface) 78%, transparent); backdrop-filter:saturate(1.3) blur(14px); -webkit-backdrop-filter:saturate(1.3) blur(14px); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 26px; padding-right:max(26px,env(safe-area-inset-right,0px)); position:sticky}
+  .topbar::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg, transparent, var(--solar) 35%, var(--brand) 70%, transparent); opacity:.5}
+  .topbar .ctx{font-size:12.5px; color:var(--muted)}
+  .topbar .ctx b{color:var(--ink2); font-weight:600}
+  .topbar .right{display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--ink2); background:var(--raised); border:1px solid var(--line); border-radius:7px; padding:5px 10px; font-weight:500}
+  .chip .dot{width:7px; height:7px; border-radius:50%; background:var(--good)}
+  .chip.env{color:var(--warn); background:var(--warn-bg); border-color:transparent; font-weight:600}
+  .tbtn{display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:9px; border:1px solid var(--line); background:var(--raised); color:var(--ink2); cursor:pointer; box-shadow:var(--shadow); transition:background .15s, color .15s, border-color .15s, transform .12s}
+  .tbtn:hover{background:var(--surface); color:var(--ink); border-color:color-mix(in srgb,var(--brand) 32%, var(--line)); transform:translateY(-1px)}
+  .tbtn svg{width:17px; height:17px}
+  .tbtn .i-sun{display:none}
+  :root[data-theme="dark"] .tbtn .i-moon{display:none}
+  :root[data-theme="dark"] .tbtn .i-sun{display:inline}
+  :root[data-theme="dark"] .tbtn{color:var(--solar)}
+
+  .main{padding:24px 26px 48px; padding-right:max(26px,env(safe-area-inset-right,0px)); max-width:1320px}
+  .vhead{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:20px}
+  .vhead h1{font-family:"Sora","Inter",sans-serif; font-size:23px; font-weight:700; letter-spacing:-.6px; margin:0; color:var(--ink)}
+  .vhead .sub{color:var(--muted); font-size:12.5px; margin-top:5px; max-width:76ch; line-height:1.55}
+
+  /* KPI */
+  .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:13px; margin-bottom:18px}
+  @media (max-width:960px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:linear-gradient(180deg, var(--surface), var(--surface2)); border:1px solid var(--line); border-radius:14px; padding:16px 17px 17px; box-shadow:var(--shadow); position:relative; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease, border-color .18s}
+  .kpi::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--brand), var(--brand2)); opacity:.9}
+  .kpi::after{content:""; position:absolute; top:-40px; right:-40px; width:110px; height:110px; border-radius:50%; background:radial-gradient(circle, var(--glow-cool), transparent 70%); pointer-events:none}
+  .kpi:hover{transform:translateY(-2px); box-shadow:var(--shadow-lg); border-color:color-mix(in srgb, var(--brand) 32%, var(--line))}
+  .kpi .k{font-size:10.5px; font-weight:700; color:var(--muted); letter-spacing:.6px; text-transform:uppercase; display:flex; align-items:center; gap:8px}
+  .kpi .k .tick{width:8px; height:8px; border-radius:3px; background:var(--brand); box-shadow:0 0 10px color-mix(in srgb, var(--brand) 60%, transparent)}
+  .kpi .v{font-family:"Sora","Inter",sans-serif; font-size:27px; font-weight:700; letter-spacing:-1px; color:var(--ink); margin-top:10px; font-variant-numeric:tabular-nums}
+  .kpi .d{font-size:11.5px; color:var(--faint); margin-top:5px}
+  .kpi.alert::before{background:linear-gradient(90deg,var(--bad),#f09b8f)} .kpi.alert .v{color:var(--bad)} .kpi.alert .k .tick{background:var(--bad); box-shadow:0 0 10px color-mix(in srgb,var(--bad) 55%,transparent)} .kpi.alert::after{background:radial-gradient(circle, color-mix(in srgb,var(--bad) 16%,transparent), transparent 70%)}
+  .kpi.warnk::before{background:linear-gradient(90deg,var(--solar),var(--solar2))} .kpi.warnk .v{color:var(--warn)} .kpi.warnk .k .tick{background:var(--solar); box-shadow:0 0 10px var(--glow-solar)} .kpi.warnk::after{background:radial-gradient(circle, var(--glow-solar), transparent 70%)}
+  .kpi.goodk::before{background:linear-gradient(90deg,var(--good),#5ad6a2)} .kpi.goodk .v{color:var(--good)} .kpi.goodk .k .tick{background:var(--good); box-shadow:0 0 10px color-mix(in srgb,var(--good) 55%,transparent)} .kpi.goodk::after{background:radial-gradient(circle, color-mix(in srgb,var(--good) 15%,transparent), transparent 70%)}
+
+  /* Cards */
+  .card{background:linear-gradient(180deg, var(--surface), var(--surface2)); border:1px solid var(--line); border-radius:14px; margin-bottom:18px; box-shadow:var(--shadow)}
+  .card-h{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid var(--line2)}
+  .card-h h2{font-family:"Sora","Inter",sans-serif; font-size:13px; font-weight:700; letter-spacing:-.1px; color:var(--ink); margin:0; display:flex; align-items:center; gap:8px}
+  .card-h .hint{font-size:11.5px; color:var(--faint)}
+  .card-b{padding:16px 17px}
+  .card-b.flush{padding:0}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:980px){.two{grid-template-columns:1fr}}
+  .grow2{grid-column:span 2}
+
+  /* Tables */
+  table.t{width:100%; border-collapse:collapse; font-size:13px}
+  table.t th{text-align:left; font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--muted); padding:10px 16px; border-bottom:1px solid var(--line); background:var(--raised); white-space:nowrap}
+  table.t td{padding:11px 16px; border-bottom:1px solid var(--line2); color:var(--ink2); vertical-align:middle}
+  table.t tr:last-child td{border-bottom:0}
+  table.t td.r, table.t th.r{text-align:right}
+  table.t .strong{color:var(--ink); font-weight:600}
+  table.t tbody tr.click{cursor:pointer}
+  table.t tbody tr.click:hover td{background:var(--raised)}
+  .tbl-wrap{overflow-x:auto}
+  .idcell{font-size:11.5px; color:var(--muted)}
+
+  .tag{display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:2px 9px; border-radius:20px; white-space:nowrap; line-height:1.5}
+  .tag .d{width:6px; height:6px; border-radius:50%}
+  .tag.good{color:var(--good); background:var(--good-bg)} .tag.good .d{background:var(--good)}
+  .tag.warn{color:var(--warn); background:var(--warn-bg)} .tag.warn .d{background:var(--warn)}
+  .tag.bad{color:var(--bad); background:var(--bad-bg)} .tag.bad .d{background:var(--bad)}
+  .tag.mut{color:var(--muted); background:var(--line2)} .tag.mut .d{background:var(--muted)}
+  .tag.brand{color:var(--brand); background:var(--brand-soft)} .tag.brand .d{background:var(--brand)}
+  .tag.violet{color:var(--violet); background:var(--violet-bg)} .tag.violet .d{background:var(--violet)}
+
+  .prog{font-size:11.5px; color:var(--ink2); display:inline-flex; align-items:center; gap:6px}
+  .prog .pm{font-size:9px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color:var(--brand); background:var(--brand-soft); border-radius:4px; padding:1px 6px}
+
+  /* Buttons */
+  .btn{display:inline-flex; align-items:center; gap:6px; border:1px solid transparent; cursor:pointer; font-weight:700; font-size:12.5px; padding:8px 15px; border-radius:9px; background:linear-gradient(135deg, var(--brand), var(--brand2)); color:var(--brand-ink); box-shadow:0 2px 10px color-mix(in srgb, var(--brand) 32%, transparent), inset 0 1px 0 rgba(255,255,255,.22); transition:transform .14s ease, box-shadow .14s ease, filter .14s}
+  .btn:hover{transform:translateY(-1px); filter:brightness(1.05); box-shadow:0 6px 18px color-mix(in srgb, var(--brand) 42%, transparent), inset 0 1px 0 rgba(255,255,255,.25)}
+  .btn:active{transform:translateY(0)}
+  .btn.sm{padding:4px 11px; font-size:11.5px; border-radius:7px}
+  .btn.ghost{background:var(--surface); color:var(--ink2); border-color:var(--line); box-shadow:var(--shadow); font-weight:600}
+  .btn.ghost:hover{background:var(--raised); filter:none; transform:translateY(-1px); border-color:color-mix(in srgb, var(--brand) 30%, var(--line))}
+  .btn.ghost.sm{padding:4px 10px}
+  .act-row{display:flex; gap:6px; justify-content:flex-end; flex-wrap:wrap}
+  .msg{font-size:12px; color:var(--good); font-weight:500}
+
+  /* Forms */
+  .grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px 15px}
+  @media (max-width:820px){.grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.grid{grid-template-columns:1fr}}
+  .f{display:flex; flex-direction:column; gap:5px; min-width:0}
+  .f.full{grid-column:1/-1}
+  .f label{font-size:11px; font-weight:600; color:var(--muted)}
+  .f .cap{font-size:10px; color:var(--faint)}
+  .f input,.f select{font-family:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:8px 10px; width:100%; max-width:100%}
+  .f select{appearance:none; -webkit-appearance:none; padding-right:30px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 11px center}
+  .f input:focus,.f select:focus{outline:3px solid var(--ring); outline-offset:0; border-color:var(--brand)}
+  .f input[type=file]{padding:6px 8px; font-size:11.5px; color:var(--muted)}
+  .f input[type=file]::file-selector-button{font-family:inherit; font-size:11px; font-weight:600; color:var(--ink2); background:var(--raised); border:1px solid var(--line); border-radius:6px; padding:4px 9px; margin-right:9px; cursor:pointer}
+  .po-total{font-size:12.5px; font-weight:700; color:var(--ink)}
+  .clickrow{cursor:pointer} .clickrow:hover{background:var(--line2)}
+  /* three-way-match drawer */
+  .scrim{position:fixed; inset:0; background:rgba(8,12,20,.44); opacity:0; pointer-events:none; transition:opacity .18s; z-index:40}
+  .scrim.on{opacity:1; pointer-events:auto}
+  .drawer{position:fixed; top:0; right:0; height:100%; width:min(560px,96vw); background:var(--bg); border-left:1px solid var(--line); box-shadow:none; transform:translateX(101%); transition:transform .22s cubic-bezier(.4,0,.2,1); z-index:41; display:flex; flex-direction:column}
+  .drawer.on{transform:none; box-shadow:-24px 0 70px rgba(8,12,20,.30)}
+  .drawer-h{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:17px 20px; border-bottom:1px solid var(--line); background:var(--surface)}
+  .drawer-h .dr-id{font-size:15px; font-weight:700; color:var(--ink); letter-spacing:-.2px}
+  .drawer-h .dr-sub{font-size:12px; color:var(--muted); margin-top:3px}
+  .drawer-h .x{border:1px solid var(--line); background:var(--surface); color:var(--muted); width:30px; height:30px; border-radius:7px; font-size:18px; line-height:1; cursor:pointer; flex:none}
+  .drawer-h .x:hover{background:var(--raised); color:var(--ink)}
+  .drawer-b{padding:16px 20px 26px; overflow:auto; display:flex; flex-direction:column; gap:13px}
+  .dblk{border:1px solid var(--line); border-radius:10px; background:var(--surface); overflow:hidden}
+  .dblk-h{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 13px; border-bottom:1px solid var(--line2)}
+  .dblk-h .t{font-size:12px; font-weight:700; color:var(--ink)}
+  .dblk-h .step{font-size:9.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:var(--faint)}
+  .dblk-b{padding:12px 13px; display:flex; flex-direction:column; gap:9px}
+  .drow{display:flex; justify-content:space-between; gap:12px; font-size:12.5px}
+  .drow .l{color:var(--muted)} .drow .v{color:var(--ink); font-weight:600; text-align:right}
+  .dgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  @media(max-width:540px){.dgrid{grid-template-columns:1fr}}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; padding:3px 9px; border-radius:6px; background:var(--brand-soft); color:var(--brand); border:1px solid var(--brand-line); max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .chip.miss{background:var(--line2); color:var(--muted); border-color:var(--line)}
+  .flag{display:flex; gap:9px; padding:9px 11px; border-radius:8px; background:var(--bad-bg); border:1px solid var(--bad); font-size:12px; color:var(--ink); line-height:1.5}
+  .flag .fi{color:var(--bad); font-weight:800; flex:none}
+  .oknote{display:flex; gap:9px; padding:9px 11px; border-radius:8px; background:var(--good-bg); border:1px solid var(--good); font-size:12px; color:var(--ink); line-height:1.5}
+  .oknote .fi{color:var(--good); font-weight:800; flex:none}
+  .email{border:1px dashed var(--brand-line); border-radius:9px; background:var(--brand-soft); padding:12px 13px; font-size:11.5px; color:var(--ink); white-space:pre-wrap; font-family:'IBM Plex Mono',ui-monospace,monospace; line-height:1.6; margin-top:4px; overflow-x:auto}
+  .sent{display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--good)}
+  /* wizard stepper */
+  .steps{display:flex; align-items:center; flex-wrap:wrap; gap:2px; margin-bottom:2px}
+  .stp{display:flex; align-items:center; gap:7px; padding:5px 3px}
+  .stp .bub{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; border:1.5px solid var(--line); color:var(--muted); background:var(--surface); flex:none}
+  .stp .lb{font-size:11.5px; font-weight:600; color:var(--muted); white-space:nowrap}
+  .stp.done .bub{background:var(--good); border-color:var(--good); color:#fff}
+  .stp.done .lb{color:var(--ink2)}
+  .stp.active .bub{background:linear-gradient(135deg,var(--brand),var(--brand2)); border-color:transparent; color:var(--brand-ink); box-shadow:0 0 0 4px color-mix(in srgb, var(--brand) 18%, transparent)}
+  .stp.active .lb{color:var(--ink)}
+  .stp.done .bub{background:var(--good); border-color:transparent; color:#042016}
+  .stp.clk{cursor:pointer} .stp.clk:hover .lb{color:var(--ink)}
+  .stp-ln{min-width:14px; flex:1 1 10px; height:1.5px; background:var(--line); margin:0 2px}
+  .stp-ln.fill{background:var(--good)}
+  .recap{border:1px solid var(--line2); border-radius:9px; background:var(--raised); padding:11px 13px; display:flex; flex-direction:column; gap:7px}
+  .recap .rr{display:flex; justify-content:space-between; gap:12px; font-size:12px}
+  .recap .rr .l{color:var(--muted)} .recap .rr .v{color:var(--ink); font-weight:600; text-align:right}
+  .wnav{display:flex; gap:8px; justify-content:space-between; align-items:center}
+  .lnk{background:none; border:none; color:var(--muted); font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; padding:4px 2px}
+  .lnk:hover{color:var(--ink)}
+  @media(max-width:480px){.stp .lb{display:none}}
+  /* yes/no questions */
+  .qblk{padding:12px 0; border-top:1px solid var(--line2)}
+  .qblk:first-child{border-top:none; padding-top:2px}
+  .qlabel{font-size:12.5px; font-weight:600; color:var(--ink); margin-bottom:7px; line-height:1.45}
+  .ynrow{display:flex; gap:8px}
+  .yn{border:1px solid var(--line); background:var(--surface); color:var(--ink2); font-family:inherit; font-size:12.5px; font-weight:600; padding:7px 18px; border-radius:7px; cursor:pointer}
+  .yn:hover{background:var(--raised)}
+  .yn.on{background:linear-gradient(135deg,var(--brand),var(--brand2)); border-color:transparent; color:var(--brand-ink); box-shadow:0 2px 10px color-mix(in srgb,var(--brand) 30%,transparent)}
+  .yn.on.no{background:var(--bad); border-color:transparent; color:#fff; box-shadow:0 2px 10px color-mix(in srgb,var(--bad) 30%,transparent)}
+  .f textarea{font-family:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:8px 10px; width:100%; max-width:100%; min-height:60px; resize:vertical; line-height:1.5}
+  .f textarea:focus{outline:3px solid var(--ring); outline-offset:0; border-color:var(--brand)}
+  /* empty state */
+  .empty{display:flex; flex-direction:column; align-items:center; text-align:center; padding:40px 24px; gap:11px}
+  .empty-i{width:52px; height:52px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:var(--brand-soft); color:var(--brand); border:1px solid var(--brand-line)}
+  .empty-i svg{width:26px; height:26px}
+  .empty-t{font-size:15px; font-weight:700; color:var(--ink)}
+  .empty-s{font-size:12.5px; color:var(--muted); line-height:1.6; max-width:62ch}
+  .seclab{font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--faint)}
+
+  /* Work queue */
+  .queue{display:flex; flex-direction:column}
+  .q{display:flex; align-items:center; gap:13px; padding:12px 17px; border-bottom:1px solid var(--line2); cursor:pointer}
+  .q:last-child{border-bottom:0}
+  .q:hover{background:var(--raised)}
+  .q .sev{flex:none; width:9px; height:9px; border-radius:50%}
+  .q .sev.hi{background:var(--bad)} .q .sev.med{background:var(--warn)} .q .sev.lo{background:var(--brand)}
+  .q .qmain{flex:1; min-width:0}
+  .q .qt{font-size:13px; font-weight:600; color:var(--ink)}
+  .q .qs{font-size:11.5px; color:var(--muted); margin-top:1px}
+  .q .qamt{font-variant-numeric:tabular-nums; font-weight:700; color:var(--ink); font-size:13px}
+  .q .qgo{color:var(--brand); font-size:11.5px; font-weight:600; flex:none}
+
+  /* Aging strip */
+  .aging{display:grid; grid-template-columns:repeat(4,1fr); gap:11px}
+  @media (max-width:620px){.aging{grid-template-columns:repeat(2,1fr)}}
+  .ag{border:1px solid var(--line); border-radius:9px; padding:11px 13px; background:var(--raised)}
+  .ag .agk{font-size:10.5px; color:var(--muted); font-weight:600}
+  .ag .agv{font-size:17px; font-weight:700; margin-top:3px; color:var(--ink)}
+  .ag .agc{font-size:10.5px; color:var(--faint); margin-top:1px}
+  .ag.warn{background:var(--warn-bg); border-color:transparent} .ag.warn .agv{color:var(--warn)}
+  .ag.bad{background:var(--bad-bg); border-color:transparent} .ag.bad .agv{color:var(--bad)}
+
+  /* Statement rows */
+  .sr{display:flex; justify-content:space-between; gap:12px; padding:7px 0; font-size:13px; border-bottom:1px solid var(--line2)}
+  .sr:last-child{border-bottom:0}
+  .sr .l{color:var(--muted)} .sr .v{font-variant-numeric:tabular-nums; color:var(--ink2); font-weight:500}
+  .sr.tot{font-weight:700} .sr.tot .l,.sr.tot .v{color:var(--ink)}
+  .snap{display:flex; align-items:center; justify-content:space-between; background:var(--brand-soft); border:1px solid var(--brand-line); border-radius:9px; padding:12px 15px; margin-top:4px}
+  .snap .k{font-size:10.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:var(--brand)}
+  .snap .v{font-size:20px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums}
+
+  .note{font-size:12px; color:var(--muted); line-height:1.6}
+  .note b{color:var(--ink2); font-weight:600}
+  .bar{height:7px; background:var(--line2); border-radius:999px; overflow:hidden}
+  .bar span{display:block; height:100%; border-radius:999px}
+
+  /* ---- premium polish ---- */
+  .kpi .v,.snap .v,.ag .agv,.drawer-h .dr-id,.q .qamt{font-family:"Sora","Inter",sans-serif}
+  .side{border-right:1px solid var(--side-line); box-shadow:2px 0 24px rgba(0,0,0,.18)}
+  .main{position:relative}
+  .chip{backdrop-filter:blur(6px)}
+  .chip.env{box-shadow:0 0 0 1px color-mix(in srgb,var(--warn) 30%,transparent)}
+  .chip .dot{box-shadow:0 0 8px color-mix(in srgb,var(--good) 70%,transparent); animation:glowpulse 2.6s ease-in-out infinite}
+  table.t tbody tr.clickrow{transition:background .12s}
+  table.t th{background:color-mix(in srgb,var(--raised) 86%, transparent)}
+  .snap{background:linear-gradient(135deg, var(--brand-soft), color-mix(in srgb,var(--solar-soft) 55%, var(--brand-soft))); border-color:var(--brand-line); box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+  .drawer{background:linear-gradient(180deg, var(--bg2), var(--bg))}
+  .drawer.on{box-shadow:-24px 0 80px rgba(0,0,0,.45)}
+  .drawer-h{background:linear-gradient(180deg, var(--surface), var(--surface2)); position:relative}
+  .drawer-h::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg, var(--solar) 10%, var(--brand) 60%, transparent); opacity:.4}
+  .email{box-shadow:inset 0 0 40px color-mix(in srgb,var(--brand) 6%, transparent)}
+
+  /* ---- service lines (trade portfolio) ---- */
+  .svc{display:grid; grid-template-columns:repeat(5,1fr); gap:12px}
+  @media(max-width:1000px){.svc{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:620px){.svc{grid-template-columns:repeat(2,1fr)}}
+  .svc-c{position:relative; border:1px solid var(--line); border-radius:14px; padding:15px 15px 16px; background:linear-gradient(180deg,var(--surface),var(--surface2)); overflow:hidden; box-shadow:var(--shadow); transition:transform .18s, box-shadow .18s, border-color .18s}
+  .svc-c:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:color-mix(in srgb,var(--tc) 38%, var(--line))}
+  .svc-c::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--tc); opacity:.95}
+  .svc-c::after{content:""; position:absolute; top:-28px; right:-28px; width:92px; height:92px; border-radius:50%; background:radial-gradient(circle, color-mix(in srgb,var(--tc) 17%,transparent), transparent 70%); pointer-events:none}
+  .svc-c .ic{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:11px; background:color-mix(in srgb,var(--tc) 15%, transparent); color:var(--tc); border:1px solid color-mix(in srgb,var(--tc) 30%, transparent)}
+  .svc-c .ic svg{width:20px; height:20px}
+  .svc-c .nm{font-size:12px; font-weight:700; color:var(--ink); letter-spacing:-.1px}
+  .svc-c .mt{font-family:"Sora","Inter",sans-serif; font-size:20px; font-weight:700; color:var(--ink); margin-top:6px; letter-spacing:-.5px}
+  .svc-c .ds{font-size:10.5px; color:var(--faint); margin-top:2px}
+  /* trade dot for tables */
+  .tdot{display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:6px; vertical-align:middle; background:var(--tc)}
+
+  /* pay cycle report */
+  .cycrow{display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end}
+  .cycbtns{display:flex; gap:8px; margin-left:auto; align-items:flex-end; flex-wrap:wrap}
+  @media(max-width:620px){.cycbtns{margin-left:0; width:100%}}
+  .cyc-sum{display:grid; grid-template-columns:repeat(4,1fr); gap:11px}
+  @media(max-width:720px){.cyc-sum{grid-template-columns:repeat(2,1fr)}}
+  .cyc-sum .cs{border:1px solid var(--line); border-radius:11px; background:linear-gradient(180deg,var(--surface),var(--surface2)); padding:12px 13px; position:relative; overflow:hidden}
+  .cyc-sum .cs::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--brand),var(--brand2))}
+  .cyc-sum .cs .csk{font-size:10px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.5px}
+  .cyc-sum .cs .csv{font-family:"Sora","Inter",sans-serif; font-size:19px; font-weight:700; color:var(--ink); margin-top:5px; letter-spacing:-.4px}
+  .cyc-sum .cs .csd{font-size:10.5px; color:var(--faint); margin-top:2px}
+
+  /* print report */
+  #print-area{position:fixed; left:-10000px; top:0; width:940px; background:#fff; color:#111}
+  .pr-wrap{padding:28px 30px; font-family:"Inter",sans-serif; color:#15202e}
+  .pr-top{display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #e5932a; padding-bottom:14px; margin-bottom:16px}
+  .pr-brand{display:flex; align-items:center; gap:12px}
+  .pr-mk{width:40px; height:40px; border-radius:11px; background:linear-gradient(145deg,#ffd880,#e5942a,#ef7420); display:flex; align-items:center; justify-content:center; flex:none}
+  .pr-mk svg{width:22px; height:22px; stroke:#7a4a05; fill:none}
+  .pr-co{font-family:"Sora","Inter",sans-serif; font-weight:700; font-size:15px; color:#0c1424}
+  .pr-co small{display:block; font-weight:600; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:#7a8699; margin-top:3px}
+  .pr-meta{text-align:right; font-size:10.5px; color:#5e6b7e; line-height:1.7}
+  .pr-h1{font-family:"Sora","Inter",sans-serif; font-size:19px; font-weight:700; color:#0c1424; margin:0 0 2px}
+  .pr-sub{font-size:12px; color:#5e6b7e; margin-bottom:8px}
+  .pr-sec{font-size:11px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; color:#c57a1a; margin:18px 0 7px}
+  table.pr-t{width:100%; border-collapse:collapse; font-size:11px}
+  table.pr-t th{text-align:left; font-size:9px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color:#5e6b7e; border-bottom:1.5px solid #d6dde7; padding:6px 8px; background:#f5f7fa}
+  table.pr-t td{padding:6px 8px; border-bottom:1px solid #eef2f7; color:#15202e; vertical-align:top}
+  table.pr-t td.r, table.pr-t th.r{text-align:right; font-variant-numeric:tabular-nums}
+  table.pr-t tr.tot td{border-top:1.5px solid #d6dde7; font-weight:700; color:#0c1424; background:#fafbfc}
+  .pr-grand{display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding:13px 16px; border:1px solid #e5932a; background:#fdf3e4; border-radius:10px}
+  .pr-grand .l{font-size:12px; font-weight:700; color:#8a5a12; text-transform:uppercase; letter-spacing:.5px}
+  .pr-grand .v{font-family:"Sora","Inter",sans-serif; font-size:22px; font-weight:700; color:#0c1424}
+  .pr-foot{margin-top:22px; font-size:10px; color:#93a0b2; border-top:1px solid #eef2f7; padding-top:10px; line-height:1.6}
+  @media print{
+    html,body{background:#fff !important}
+    body::before{display:none !important}
+    .app{display:none !important}
+    #print-area{position:static !important; left:0 !important; width:auto !important}
+    @page{margin:14mm}
+  }
+
+  .cell-inp{font-family:inherit; font-size:12.5px; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:4px 7px; width:92px; text-align:right; font-variant-numeric:tabular-nums}
+  .cell-inp:focus{outline:1px solid var(--brand); border-color:var(--brand)}
+  .none{color:var(--faint); font-size:11.5px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#7a4a05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.2v2.4M12 19.4v2.4M2.2 12h2.4M19.4 12h2.4M5 5l1.7 1.7M17.3 17.3L19 19M19 5l-1.7 1.7M6.7 17.3L5 19"/></svg></span>
+      <span class="nm">Cascade Solar + Air<small>Finance Operations</small></span>
+    </div>
+
+    <div class="nav-grp">
+      <div class="nav-lab">Overview</div>
+      <button class="nav-i on" data-view="dash"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>Dashboard</button>
+    </div>
+    <div class="nav-grp">
+      <div class="nav-lab">Procurement</div>
+      <button class="nav-i" data-view="po"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6"/><path d="M9 13l2 2 4-4"/></svg></span>Purchase Orders<span class="ct" id="nav-po"></span></button>
+    </div>
+    <div class="nav-grp">
+      <div class="nav-lab">Projects</div>
+      <button class="nav-i" data-view="billing"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16l3.5-5 3 2.5L20 7"/></svg></span>Project Billing<span class="ct" id="nav-bill"></span></button>
+    </div>
+    <div class="nav-grp">
+      <div class="nav-lab">Claims</div>
+      <button class="nav-i" data-view="warranty"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>Warranty<span class="ct" id="nav-wty"></span></button>
+      <button class="nav-i" data-view="claims"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 19.3 7.2 17.7l.9-5.4-3.9-3.8 5.4-.8z"/></svg></span>Rebates<span class="ct" id="nav-clm"></span></button>
+    </div>
+    <div class="nav-grp">
+      <div class="nav-lab">Expenses</div>
+      <button class="nav-i" data-view="reimb"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h12v18l-3-1.6L12 21l-3-1.6L6 21z"/><path d="M9 8h6M9 12h5"/></svg></span>Reimbursements<span class="ct" id="nav-reimb"></span></button>
+    </div>
+    <div class="nav-grp">
+      <div class="nav-lab">Finance</div>
+      <button class="nav-i" data-view="recon"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span>Reconciliation<span class="ct" id="nav-rec"></span></button>
+    </div>
+
+    <div class="side-foot">Sample data for demonstration.<br>Not a real company or customer records.<br>Prototype by Kadeem Haughton.</div>
+  </aside>
+
+  <div class="body">
+    <div class="topbar">
+      <div class="ctx">Entity: <b>Cascade Solar + Air, Inc.</b> &nbsp;&middot;&nbsp; Northern California</div>
+      <div class="right">
+        <span class="chip"><span class="dot"></span>Synced: ServiceTitan + QuickBooks</span>
+        <span class="chip">As of <b style="color:var(--ink)">Nov 18, 2026</b></span>
+        <span class="chip env">Sample data</span>
+        <button class="tbtn" id="theme-toggle" aria-label="Toggle light or dark theme" title="Light / dark">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.3M12 19.3v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.4 12h2.3M19.3 12h2.3M4.4 19.6l1.6-1.6M18 6l1.6-1.6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <!-- DASHBOARD -->
+      <section class="view active" id="view-dash">
+        <div class="vhead"><div><h1>Finance Operations</h1><div class="sub">Purchase order matching, project billing audits, and incentive claims across the solar, HVAC, plumbing, pool and electrical pipeline. Exceptions are surfaced first, so nothing with cash attached slips.</div></div></div>
+        <div class="kpis" id="dash-kpis"></div>
+        <div class="card">
+          <div class="card-h"><h2>Service lines</h2><span class="hint">Active projects across the trades</span></div>
+          <div class="card-b"><div class="svc" id="dash-svc"></div></div>
+        </div>
+        <div class="two">
+          <div class="card grow2">
+            <div class="card-h"><h2>Needs attention today</h2><span class="hint">Ranked by cash at risk</span></div>
+            <div class="card-b flush"><div class="queue" id="dash-queue"></div></div>
+          </div>
+        </div>
+        <div class="two">
+          <div class="card">
+            <div class="card-h"><h2>Cash position</h2><span class="hint">Incentives in and vendors out</span></div>
+            <div class="card-b" id="dash-cash"></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h2>Claims by status</h2><span class="hint">Where the incentive pipeline sits</span></div>
+            <div class="card-b" id="dash-status"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PURCHASE ORDERS -->
+      <section class="view" id="view-po">
+        <div class="vhead"><div><h1>Purchase Orders</h1><div class="sub">Three-way match of each PO against the vendor invoice and the receiving record. Price and quantity variances are flagged before anything is released for payment.</div></div></div>
+        <div class="kpis" id="po-kpis"></div>
+        <div class="card">
+          <div class="card-h"><h2>Record a Purchase Order</h2><span class="hint">Step 1 of the match. Record it here, then the vendor bill and delivery follow in order.</span></div>
+          <div class="card-b">
+            <div class="grid">
+              <div class="f"><label for="po-ponum">Internal PO #</label><input type="text" id="po-ponum" placeholder="e.g. PO-4031 (from your system)"></div>
+              <div class="f"><label for="po-vendor">Vendor</label><input type="text" id="po-vendor" placeholder="e.g. CED Greentech"></div>
+              <div class="f"><label for="po-cat">Category</label><select id="po-cat"><option>Panels</option><option>Inverters</option><option>Battery storage</option><option>HVAC equipment</option><option>Plumbing</option><option>Pool equipment</option><option>Electrical</option><option>Racking / BOS</option></select></div>
+              <div class="f"><label for="po-qty">Units ordered</label><input type="number" id="po-qty" placeholder="0" min="0" step="1"></div>
+              <div class="f"><label for="po-price">Unit price ($)</label><input type="number" id="po-price" placeholder="0.00" min="0" step="0.01"></div>
+              <div class="f"><label for="po-doc">Attach PO (PDF from your system)</label><input type="file" id="po-doc" accept=".pdf,.png,.jpg,.jpeg"></div>
+            </div>
+            <div class="act-row" style="justify-content:flex-start; margin-top:15px; align-items:center; gap:14px"><button class="btn" id="po-add">Record PO</button><span class="po-total" id="po-total">PO total: $0.00</span><span class="msg" id="po-msg"></span></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-h"><h2>Open &amp; Matched POs</h2><span class="hint">Click any PO for the three-way match</span></div><div class="card-b flush"><div class="tbl-wrap"><table class="t" id="po-tbl"></table></div></div></div>
+      </section>
+
+      <!-- PO three-way-match drawer -->
+      <div class="scrim" id="po-scrim"></div>
+      <aside class="drawer" id="po-drawer" aria-hidden="true" aria-label="Purchase order three-way match">
+        <div class="drawer-h"><div><div class="dr-id mono" id="dr-id"></div><div class="dr-sub" id="dr-sub"></div></div><button class="x" id="dr-close" aria-label="Close">&times;</button></div>
+        <div class="drawer-b" id="dr-body"></div>
+      </aside>
+
+      <!-- PROJECT BILLING -->
+      <section class="view" id="view-billing">
+        <div class="vhead"><div><h1>Project Billing Audit</h1><div class="sub">You invoice in your own system. Here each invoice is checked against the job scope: was everything performed, was extra work done, and is it all on the customer invoice. Unbilled work is routed to the field team to price.</div></div></div>
+        <div class="kpis" id="bill-kpis"></div>
+        <div class="card">
+          <div class="card-h"><h2>Record a project invoice</h2><span class="hint">Step 1. Log the invoice you raised, then we check it against the job scope.</span></div>
+          <div class="card-b">
+            <div class="grid">
+              <div class="f"><label for="bill-no">Internal invoice #</label><input type="text" id="bill-no" placeholder="e.g. INV-2047 (from your system)"></div>
+              <div class="f"><label for="bill-job">Project / contract</label><select id="bill-job"></select></div>
+              <div class="f"><label for="bill-amt">Invoice amount ($)</label><input type="number" id="bill-amt" min="0" step="0.01" placeholder="amount you billed"></div>
+              <div class="f"><label for="bill-doc">Attach invoice</label><input type="file" id="bill-doc" accept=".pdf,.png,.jpg,.jpeg"></div>
+            </div>
+            <div class="act-row" style="justify-content:flex-start; margin-top:15px"><button class="btn" id="bill-add">Record invoice</button><span class="msg" id="bill-msg"></span></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-h"><h2>Project invoices</h2><span class="hint">Click any invoice to run the scope check</span></div><div class="card-b flush"><div class="tbl-wrap"><table class="t" id="bill-tbl"></table></div></div></div>
+      </section>
+
+      <!-- project-invoice scope-check drawer -->
+      <div class="scrim" id="bill-scrim"></div>
+      <aside class="drawer" id="bill-drawer" aria-hidden="true" aria-label="Project invoice scope check">
+        <div class="drawer-h"><div><div class="dr-id mono" id="bd-id"></div><div class="dr-sub" id="bd-sub"></div></div><button class="x" id="bd-close" aria-label="Close">&times;</button></div>
+        <div class="drawer-b" id="bd-body"></div>
+      </aside>
+
+      <!-- REBATES -->
+      <section class="view" id="view-claims">
+        <div class="vhead">
+          <div><h1>Rebate Claims</h1><div class="sub">Every utility and state rebate claim, its portal, status, and next follow-up date. Rejected and overdue claims are pulled to the top so incentive money owed to the customer gets collected.</div></div>
+          <div class="act-row"><button class="btn ghost sm" id="clm-filter">Show: all rebates</button><button class="btn" id="reb-new">Log a rebate</button></div>
+        </div>
+        <div class="kpis" id="clm-kpis"></div>
+        <div class="card"><div class="card-h"><h2>Rebate Aging</h2><span class="hint">Days in current status, open rebates</span></div><div class="card-b" id="clm-aging"></div></div>
+        <div class="card"><div class="card-h"><h2>Rebate Register</h2><span class="hint" id="clm-count"></span></div><div class="card-b flush"><div class="tbl-wrap"><table class="t" id="clm-tbl"></table></div></div></div>
+        <div class="act-row" style="justify-content:flex-start"><span class="msg" id="clm-msg"></span></div>
+      </section>
+
+      <!-- rebate wizard drawer -->
+      <div class="scrim" id="reb-scrim"></div>
+      <aside class="drawer" id="reb-drawer" aria-hidden="true" aria-label="Rebate claim">
+        <div class="drawer-h"><div><div class="dr-id mono" id="rd-id"></div><div class="dr-sub" id="rd-sub"></div></div><button class="x" id="rd-close" aria-label="Close">&times;</button></div>
+        <div class="drawer-b" id="rd-body"></div>
+      </aside>
+
+      <!-- WARRANTY -->
+      <section class="view" id="view-warranty">
+        <div class="vhead">
+          <div><h1>Warranty Claims</h1><div class="sub">Manufacturer warranty claims (RMAs) with the full equipment, purchase, installation and failure record a vendor needs to approve a repair or replacement. Filed through each manufacturer's portal.</div></div>
+          <div class="act-row"><button class="btn" id="wty-new">Log a warranty claim</button></div>
+        </div>
+        <div class="kpis" id="wty-kpis"></div>
+        <div class="card"><div class="card-h"><h2>Warranty Register</h2><span class="hint" id="wty-count"></span></div><div class="card-b flush"><div class="tbl-wrap"><table class="t" id="wty-tbl"></table></div></div></div>
+        <div class="act-row" style="justify-content:flex-start"><span class="msg" id="wty-msg"></span></div>
+      </section>
+
+      <!-- REIMBURSEMENTS -->
+      <section class="view" id="view-reimb">
+        <div class="vhead">
+          <div><h1>Reimbursements</h1><div class="sub">Contractor and employee expense reimbursements, kept in their own queue. Each is logged, routed for approval, and tracked through to payment.</div></div>
+          <div class="act-row"><button class="btn" id="rmb-new">Log a reimbursement</button></div>
+        </div>
+        <div class="kpis" id="rmb-kpis"></div>
+        <div class="card">
+          <div class="card-h"><h2>Pay cycle report</h2><span class="hint">Export reimbursements for a pay period</span></div>
+          <div class="card-b">
+            <div class="cycrow">
+              <div class="f" style="flex:0 0 auto"><label>Frequency</label><div class="ynrow"><button class="yn on" data-freq="7">Weekly</button><button class="yn" data-freq="14">Fortnightly</button></div></div>
+              <div class="f" style="min-width:230px; flex:1 1 230px"><label for="cyc-sel">Pay cycle</label><select id="cyc-sel"></select></div>
+              <div class="cycbtns"><button class="btn ghost" id="cyc-csv">Download CSV</button><button class="btn" id="cyc-print">Printable report</button></div>
+            </div>
+            <div id="cyc-summary" style="margin-top:14px"></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-h"><h2>Reimbursement Register</h2><span class="hint" id="rmb-count"></span></div><div class="card-b flush"><div class="tbl-wrap"><table class="t" id="rmb-tbl"></table></div></div></div>
+        <div class="act-row" style="justify-content:flex-start"><span class="msg" id="rmb-msg"></span></div>
+      </section>
+
+      <!-- reimbursement wizard drawer -->
+      <div class="scrim" id="rmb-scrim"></div>
+      <aside class="drawer" id="rmb-drawer" aria-hidden="true" aria-label="Reimbursement claim">
+        <div class="drawer-h"><div><div class="dr-id mono" id="md-id"></div><div class="dr-sub" id="md-sub"></div></div><button class="x" id="md-close" aria-label="Close">&times;</button></div>
+        <div class="drawer-b" id="md-body"></div>
+      </aside>
+
+      <!-- warranty intake drawer -->
+      <div class="scrim" id="wty-scrim"></div>
+      <aside class="drawer" id="wty-drawer" aria-hidden="true" aria-label="Warranty claim">
+        <div class="drawer-h"><div><div class="dr-id mono" id="wd-id"></div><div class="dr-sub" id="wd-sub"></div></div><button class="x" id="wd-close" aria-label="Close">&times;</button></div>
+        <div class="drawer-b" id="wd-body"></div>
+      </aside>
+
+      <!-- RECONCILIATION -->
+      <section class="view" id="view-recon">
+        <div class="vhead"><div><h1>Reconciliation</h1><div class="sub">Bank activity matched to its source: incentive deposits to the claim that earned them, and vendor payments to the PO they settle. Anything that does not tie out is flagged.</div></div></div>
+        <div class="kpis" id="rec-kpis"></div>
+        <div class="card"><div class="card-h"><h2>Bank Activity</h2><span class="hint">Deposits in, payments out</span></div><div class="card-b flush"><div class="tbl-wrap"><table class="t" id="rec-tbl"></table></div></div></div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<div id="print-area" aria-hidden="true"></div>
+
+<script>
+  var $ = function(id){ return document.getElementById(id); };
+  function money(n){ var neg=n<0; var s=Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); return neg?"("+"$"+s+")":"$"+s; }
+  function money0(n){ return "$"+Math.round(n).toLocaleString("en-US"); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  var ASOF = "2026-11-18";
+  function days(a,b){ return Math.round((new Date(a+"T00:00:00") - new Date(b+"T00:00:00"))/86400000); }
+  function daysTo(d){ return days(d, ASOF); }
+  function ageOf(d){ return days(ASOF, d); }
+
+  // ---------- data ----------
+  var jobs = [
+    {id:"JOB-118", cust:"Nguyen Residence",   city:"Roseville",      type:"Solar 8.4 kW",            contract:31500, co:0,    invoiced:31500, rep:"Marcus Reyes",    repEmail:"marcus.reyes@cascadesolarair.com"},
+    {id:"JOB-120", cust:"Patel Residence",    city:"Folsom",         type:"Solar + Battery",         contract:46800, co:2400, invoiced:49200, rep:"Dana Whitfield",  repEmail:"dana.whitfield@cascadesolarair.com"},
+    {id:"JOB-122", cust:"Okafor Residence",   city:"Davis",          type:"Solar + Battery",         contract:52300, co:0,    invoiced:55100, rep:"Dana Whitfield",  repEmail:"dana.whitfield@cascadesolarair.com"},
+    {id:"JOB-125", cust:"Alvarez Residence",  city:"Elk Grove",      type:"HVAC heat pump + ducts",  contract:18400, co:1200, invoiced:18400, rep:"Priya Nair",      repEmail:"priya.nair@cascadesolarair.com"},
+    {id:"JOB-126", cust:"Thompson Residence", city:"Stockton",       type:"HVAC + plumbing",         contract:14900, co:0,    invoiced:16100, rep:"Priya Nair",      repEmail:"priya.nair@cascadesolarair.com"},
+    {id:"JOB-129", cust:"Bautista Residence", city:"Rocklin",        type:"Solar 9.1 kW",            contract:33200, co:0,    invoiced:33200, rep:"Marcus Reyes",    repEmail:"marcus.reyes@cascadesolarair.com"},
+    {id:"JOB-131", cust:"Reed Residence",     city:"Sacramento",     type:"Solar + reroof",          contract:41800, co:3600, invoiced:45400, rep:"Marcus Reyes",    repEmail:"marcus.reyes@cascadesolarair.com"},
+    {id:"JOB-134", cust:"Singh Residence",    city:"Woodland",       type:"HVAC heat pump",          contract:16250, co:0,    invoiced:16250, rep:"Priya Nair",      repEmail:"priya.nair@cascadesolarair.com"},
+    {id:"JOB-137", cust:"Marsh Residence",    city:"Granite Bay",    type:"Pool heat pump + electrical", contract:21400, co:0, invoiced:21400, rep:"Marcus Reyes",    repEmail:"marcus.reyes@cascadesolarair.com"}
+  ];
+  function job(id){ for(var i=0;i<jobs.length;i++) if(jobs[i].id===id) return jobs[i]; return null; }
+
+  // vendor billing contact, pre-filled as the default recipient of a discrepancy
+  var AP_CC = "purchasing@cascadesolarair.com, ap@cascadesolarair.com";   // our own team, copied internally
+  var vendorInfo = {
+    "CED Greentech":        {contact:"CED Greentech Billing",        email:"billing@cedgreentech.com",            addr:"Sacramento CA",      phone:"(916) 555-0148"},
+    "Soligent":             {contact:"Soligent Billing",             email:"billing@soligent.net",                addr:"Rocklin CA",         phone:"(916) 555-0172"},
+    "BayWa r.e.":           {contact:"BayWa r.e. Accounts",          email:"ar@baywa-re.com",                     addr:"Sacramento CA",      phone:"(916) 555-0109"},
+    "Gemaire":              {contact:"Gemaire Billing",              email:"billing@gemaire.com",                 addr:"Sacramento CA",      phone:"(916) 555-0137"},
+    "Ferguson":             {contact:"Ferguson Billing",             email:"billing@ferguson.com",                addr:"West Sacramento CA", phone:"(916) 555-0193"},
+    "SolarEdge":            {contact:"SolarEdge Billing",            email:"billing@solaredge.com",               addr:"Fremont CA",         phone:"(510) 555-0121"},
+    "City Electric Supply": {contact:"City Electric Supply Billing", email:"sac.billing@cityelectricsupply.com",  addr:"Sacramento CA",      phone:"(916) 555-0166"}
+  };
+  function vrec(v){ return vendorInfo[v] || {contact:v+" Billing", email:"", addr:"", phone:""}; }
+  function vinfo(v){ var r=vrec(v); return r.contact+(r.addr?", "+r.addr:"")+(r.email?"  ·  "+r.email:"")+(r.phone?"  ·  "+r.phone:""); }
+  // Each PO: qty x unitPrice = po (ordered). inv = vendor bill $ (invNo its number), recvQty = units on the
+  // delivery paperwork. po/inv/rec kept as dollar fields so reconciliation and the dashboard stay consistent.
+  var poSeq = 4031;
+  var pos = [
+    {id:"PO-4021", vendor:"CED Greentech",        job:"JOB-118", cat:"Inverters",       qty:12, unitPrice:700,  po:8400,  invNo:"CED-55218", invQty:12, inv:8400,  recvQty:12, rec:8400,  poDoc:"PO-4021.pdf", invDoc:"CED-55218.pdf", delivDoc:"packing-4021.pdf", discSent:false, date:"2026-11-02"},
+    {id:"PO-4022", vendor:"Soligent",             job:"JOB-120", cat:"Panels",          qty:20, unitPrice:364,  po:7280,  invNo:"SOL-33190", invQty:20, inv:7630,  recvQty:20, rec:7280,  poDoc:"PO-4022.pdf", invDoc:"SOL-33190.pdf", delivDoc:"packing-4022.pdf", discSent:false, date:"2026-11-04"},
+    {id:"PO-4023", vendor:"BayWa r.e.",           job:"JOB-122", cat:"Battery storage", qty:2,  unitPrice:5600, po:11200, invNo:"BW-7741",   invQty:2,  inv:11200, recvQty:null, rec:null, poDoc:"PO-4023.pdf", invDoc:"BW-7741.pdf", delivDoc:"", discSent:false, date:"2026-11-06"},
+    {id:"PO-4024", vendor:"Gemaire",              job:"JOB-125", cat:"HVAC equipment",  qty:3,  unitPrice:2050, po:6150,  invNo:"GEM-20714", invQty:3,  inv:6150,  recvQty:3,  rec:6150,  poDoc:"PO-4024.pdf", invDoc:"GEM-20714.pdf", delivDoc:"packing-4024.pdf", discSent:false, date:"2026-11-05"},
+    {id:"PO-4025", vendor:"Ferguson",             job:"JOB-126", cat:"Plumbing",        qty:4,  unitPrice:230,  po:920,   invNo:"FRG-99210", invQty:4,  inv:1180,  recvQty:4,  rec:920,   poDoc:"PO-4025.pdf", invDoc:"FRG-99210.pdf", delivDoc:"packing-4025.pdf", discSent:false, date:"2026-11-07"},
+    {id:"PO-4026", vendor:"CED Greentech",        job:"JOB-129", cat:"Panels",          qty:21, unitPrice:450,  po:9450,  invNo:"CED-55402", invQty:21, inv:9450,  recvQty:20, rec:9000,  poDoc:"PO-4026.pdf", invDoc:"CED-55402.pdf", delivDoc:"packing-4026.pdf", discSent:false, date:"2026-11-08"},
+    {id:"PO-4027", vendor:"SolarEdge",            job:"JOB-131", cat:"Inverters",       qty:8,  unitPrice:650,  po:5200,  invNo:"",          invQty:null, inv:null, recvQty:null, rec:null, poDoc:"PO-4027.pdf", invDoc:"", delivDoc:"", discSent:false, date:"2026-11-10"},
+    {id:"PO-4028", vendor:"Gemaire",              job:"JOB-134", cat:"HVAC equipment",  qty:2,  unitPrice:2150, po:4300,  invNo:"GEM-20760", invQty:2,  inv:4300,  recvQty:2,  rec:4300,  poDoc:"PO-4028.pdf", invDoc:"GEM-20760.pdf", delivDoc:"packing-4028.pdf", discSent:false, date:"2026-11-09"},
+    {id:"PO-4029", vendor:"Soligent",             job:"JOB-131", cat:"Panels",          qty:24, unitPrice:290,  po:6960,  invNo:"SOL-33245", invQty:24, inv:6960,  recvQty:24, rec:6960,  poDoc:"PO-4029.pdf", invDoc:"SOL-33245.pdf", delivDoc:"packing-4029.pdf", discSent:false, date:"2026-11-11"},
+    {id:"PO-4030", vendor:"City Electric Supply", job:"JOB-126", cat:"Electrical",      qty:10, unitPrice:265,  po:2650,  invNo:"CES-44109", invQty:10, inv:2810,  recvQty:10, rec:2650,  poDoc:"PO-4030.pdf", invDoc:"CES-44109.pdf", delivDoc:"packing-4030.pdf", discSent:false, date:"2026-11-12"}
+  ];
+  var TOL = 1;
+  // Three-way match: PO (qty x unitPrice) vs vendor bill ($) vs delivery paperwork (units).
+  // Returns plain-English flags plus .ex / .variance so the dashboard work queue keeps working.
+  function poMatch(p){
+    if(p.inv==null)     return {k:"Awaiting vendor bill", cls:"mut",  ex:false, variance:0, flags:[]};
+    if(p.recvQty==null) return {k:"Awaiting delivery",    cls:"warn", ex:false, variance:0, flags:[]};
+    var flags=[], priceVar=p.inv-p.po, shortU=p.qty-p.recvQty;
+    if(priceVar > TOL)      flags.push({t:"over",  amt:priceVar,  msg:"Overcharged. The vendor billed "+money(p.inv)+", which is "+money(priceVar)+" above the "+money(p.po)+" purchase order."});
+    else if(priceVar < -TOL) flags.push({t:"under", amt:priceVar, msg:"Underbilled. The vendor billed "+money(p.inv)+", which is "+money(-priceVar)+" below the "+money(p.po)+" purchase order. Confirm before paying so the balance is not back-billed later."});
+    if(shortU > 0) flags.push({t:"short", amt:shortU*p.unitPrice, msg:"Shipped short. Delivery paperwork shows "+p.recvQty+" of "+p.qty+" units. Do not pay for "+shortU+" undelivered unit"+(shortU===1?"":"s")+" ("+money(shortU*p.unitPrice)+")."});
+    if(flags.length===0) return {k:"Matched", cls:"good", ex:false, variance:0, flags:[]};
+    var exposure=flags.reduce(function(s,f){ return s+(f.t==="under"?0:Math.abs(f.amt)); },0);
+    var label=flags.length>1 ? "Price & qty variance" : (flags[0].t==="over"?"Overcharged":flags[0].t==="under"?"Underbilled":"Short shipped");
+    return {k:label, cls:"bad", ex:true, variance:exposure, flags:flags};
+  }
+
+  var clmSeq = 593;
+  // Rebate claims: program/portal + the full intake (customer contact, equipment identity, dates,
+  // documents, offer reference, amount, payment info, submission date, status).
+  var claims = [
+    {id:"CLM-581", cust:"Patel Residence",    custPhone:"(916) 555-0241", custEmail:"j.patel@example.com",   program:"SGIP (battery)",          portal:"SGIP PA",       type:"Rebate", mfr:"Enphase",    model:"IQ Battery 5P",  serial:"5P-7781233-004",  purchaseDate:"2026-08-18", installDate:"2026-09-03", expireDate:"2026-12-31", invoiceDoc:"invoice-patel.pdf",    installDoc:"install-patel.pdf",    offerNo:"SGIP-GEN-2026-33871", amt:2700, payInfo:"ACH to customer on file", submitted:"2026-10-02", status:"Pending",    updated:"2026-10-24", followup:"2026-11-14", reason:"", posted:false},
+    {id:"CLM-582", cust:"Okafor Residence",   custPhone:"(530) 555-0199", custEmail:"c.okafor@example.com",  program:"SGIP (battery)",          portal:"SGIP PA",       type:"Rebate", mfr:"Enphase",    model:"IQ Battery 5P",  serial:"5P-7781244-018",  purchaseDate:"2026-09-21", installDate:"2026-10-06", expireDate:"2026-12-31", invoiceDoc:"invoice-okafor.pdf",   installDoc:"install-okafor.pdf",   offerNo:"SGIP-GEN-2026-34090", amt:2700, payInfo:"Check to customer",     submitted:"2026-11-05", status:"Submitted",  updated:"2026-11-05", followup:"2026-11-26", reason:"", posted:false},
+    {id:"CLM-583", cust:"Alvarez Residence",  custPhone:"(916) 555-0164", custEmail:"m.alvarez@example.com", program:"TECH Clean California",   portal:"TECH Clean CA", type:"Rebate", mfr:"Carrier",    model:"38MURA Heat Pump",serial:"4921E30142",      purchaseDate:"2026-05-11", installDate:"2026-05-22", expireDate:"2027-02-28", invoiceDoc:"invoice-alvarez.pdf",  installDoc:"install-alvarez.pdf",  offerNo:"TECH-HP-2026-7741",   amt:3100, payInfo:"Paid to Cascade (assigned)", submitted:"2026-10-20", status:"Waitlisted", updated:"2026-10-28", followup:"2026-12-01", reason:"Single-family funds fully reserved statewide; on waitlist", posted:false},
+    {id:"CLM-584", cust:"Thompson Residence", custPhone:"(209) 555-0137", custEmail:"d.thompson@example.com",program:"PG&E rebate (HVAC)",      portal:"PG&E",          type:"Rebate", mfr:"Bosch",      model:"BOVA-36 Heat Pump",serial:"BVA36-220714",   purchaseDate:"2026-08-30", installDate:"2026-09-12", expireDate:"2026-12-15", invoiceDoc:"invoice-thompson.pdf", installDoc:"",                     offerNo:"PGE-HVAC-2026-5521",  amt:1200, payInfo:"Check to customer",     submitted:"2026-09-28", status:"Rejected",   updated:"2026-10-30", followup:"2026-11-12", reason:"Missing AHRI certificate", posted:false},
+    {id:"CLM-585", cust:"Singh Residence",    custPhone:"(530) 555-0122", custEmail:"a.singh@example.com",   program:"SMUD rebate (heat pump)", portal:"SMUD",          type:"Rebate", mfr:"Mitsubishi", model:"SUZ-KA24NA",     serial:"MIT-24-551902",   purchaseDate:"2026-09-02", installDate:"2026-09-18", expireDate:"2027-01-31", invoiceDoc:"invoice-singh.pdf",    installDoc:"install-singh.pdf",    offerNo:"SMUD-HP-2026-2214",   amt:1000, payInfo:"ACH to customer on file", submitted:"2026-10-15", status:"Approved",   updated:"2026-11-07", followup:"2026-11-25", reason:"", posted:false},
+    {id:"CLM-589", cust:"Patel Residence",    custPhone:"(916) 555-0241", custEmail:"j.patel@example.com",   program:"PG&E rebate (HVAC)",      portal:"PG&E",          type:"Rebate", mfr:"Carrier",    model:"38MURA Heat Pump",serial:"CAR-38-770241",   purchaseDate:"2026-07-02", installDate:"2026-07-15", expireDate:"2026-10-31", invoiceDoc:"invoice-patel2.pdf",   installDoc:"install-patel2.pdf",   offerNo:"PGE-HVAC-2026-4410",  amt:1400, payInfo:"ACH to customer on file", submitted:"2026-09-20", status:"Paid",       updated:"2026-11-03", followup:"",           reason:"", posted:true},
+    {id:"CLM-590", cust:"Okafor Residence",   custPhone:"(530) 555-0199", custEmail:"c.okafor@example.com",  program:"SMUD rebate (heat pump)", portal:"SMUD",          type:"Rebate", mfr:"Daikin",     model:"DZ17VSA Heat Pump",serial:"DAI-17-330590",  purchaseDate:"2026-06-20", installDate:"2026-07-04", expireDate:"2026-10-15", invoiceDoc:"invoice-okafor2.pdf",  installDoc:"install-okafor2.pdf",  offerNo:"SMUD-HP-2026-1980",   amt:1000, payInfo:"Check to customer",     submitted:"2026-09-14", status:"Paid",       updated:"2026-10-28", followup:"",           reason:"", posted:true},
+    {id:"CLM-591", cust:"Garcia Residence",   custPhone:"(916) 555-0288", custEmail:"l.garcia@example.com",  program:"SGIP (battery)",          portal:"SGIP PA",       type:"Rebate", mfr:"Tesla",      model:"Powerwall 3",    serial:"PW3-9981-591",    purchaseDate:"2026-08-05", installDate:"2026-08-22", expireDate:"2026-12-31", invoiceDoc:"invoice-garcia.pdf",   installDoc:"install-garcia.pdf",   offerNo:"SGIP-GEN-2026-33402", amt:2700, payInfo:"ACH to customer on file", submitted:"2026-09-30", status:"Rejected",   updated:"2026-10-25", followup:"2026-11-10", reason:"Interconnection agreement not attached", posted:false}
+  ];
+  var IN_FLIGHT = {Submitted:1, Pending:1, Approved:1, Waitlisted:1};
+  var REB_STATUSES = ["Draft","Submitted","Pending","Approved","Paid","Rejected","Waitlisted"];
+  var REB_PROGRAMS = {"SGIP (battery)":"SGIP PA","TECH Clean California":"TECH Clean CA","PG&E rebate (HVAC)":"PG&E","SMUD rebate (heat pump)":"SMUD","HEEHRA":"HEEHRA"};
+  function clmTag(s){
+    var m={Draft:"mut", Submitted:"brand", Pending:"warn", Approved:"violet", Paid:"good", Rejected:"bad", Waitlisted:"warn"};
+    return '<span class="tag '+(m[s]||"mut")+'"><span class="d"></span>'+esc(s)+'</span>';
+  }
+  function isOverdue(c){ return IN_FLIGHT[c.status] && c.followup && daysTo(c.followup) < 0; }
+  function needsAction(c){ return c.status==="Rejected" || isOverdue(c); }
+
+  // ---------- warranty claims (manufacturer RMAs) ----------
+  var wtySeq = 605;
+  // Full intake per the warranty checklist: equipment identity, purchase + install dates and docs,
+  // registration number, the failure (description, calendar date, media) and the service history.
+  var warranties = [
+    {id:"WTY-586", job:"JOB-131", mfr:"Enphase",   model:"IQ8A-72-2-US",   serial:"482416-1180-0007", purchaseDate:"2026-03-14", installDate:"2026-04-02", regNo:"ENPH-REG-55213", proofDoc:"invoice-reed.pdf",     installDoc:"install-pkg-reed.pdf",    issue:"One microinverter is offline and not reporting to the gateway; the branch shows zero production.", issueDate:"2026-11-05", mediaDoc:"photos-reed-array.jpg",   history:"Commissioned 2026-04-02. Firmware 10.3 pushed 2026-08-11. No prior faults.", portal:"Enphase",   status:"Submitted",    submitted:"2026-11-08", updated:"2026-11-08", followup:"2026-11-24", reason:""},
+    {id:"WTY-587", job:"JOB-129", mfr:"SolarEdge", model:"SE7600H-US",     serial:"7F1294A2-55",      purchaseDate:"2026-02-20", installDate:"2026-03-05", regNo:"SE-REG-70148",   proofDoc:"invoice-bautista.pdf", installDoc:"install-pkg-bautista.pdf", issue:"Inverter throwing error 18xx and shutting down intermittently in the afternoon peak.",              issueDate:"2026-10-19", mediaDoc:"screen-error-1820.jpg",  history:"Commissioned 2026-03-05. Arc-fault self-test passed at install.",                portal:"SolarEdge", status:"Approved",     submitted:"2026-10-22", updated:"2026-11-09", followup:"2026-11-21", reason:""},
+    {id:"WTY-588", job:"JOB-125", mfr:"Carrier",   model:"24ANB660A003",   serial:"4921E30142",       purchaseDate:"2026-05-11", installDate:"2026-05-22", regNo:"CAR-REG-33870",  proofDoc:"invoice-alvarez.pdf",  installDoc:"install-pkg-alvarez.pdf", issue:"Compressor not staging on a call for cooling; hard-start observed, then locks out on high head pressure.", issueDate:"2026-10-16", mediaDoc:"video-alvarez-unit.mp4", history:"Startup 2026-05-22. Refrigerant charge verified to spec. 6-month check 2026-11-01.", portal:"Carrier",   status:"Acknowledged", submitted:"2026-10-18", updated:"2026-10-26", followup:"2026-11-16", reason:""},
+    {id:"WTY-592", job:"JOB-118", mfr:"Trane",     model:"4TXCB003DS3HCA",  serial:"W262113749",       purchaseDate:"2026-01-30", installDate:"2026-02-12", regNo:"",               proofDoc:"invoice-nguyen.pdf",   installDoc:"",                        issue:"Evaporator coil leaking; low superheat and oil residue at the braze joint.",                        issueDate:"2026-11-07", mediaDoc:"photos-nguyen-coil.jpg", history:"Installed 2026-02-12. Leak search done 2026-11-07, confirmed at the coil.",          portal:"Trane",     status:"Submitted",    submitted:"2026-11-09", updated:"2026-11-09", followup:"2026-11-27", reason:""},
+    {id:"WTY-601", job:"JOB-120", mfr:"Enphase",   model:"IQ Battery 5P",  serial:"5P-9981274-021",   purchaseDate:"2026-06-03", installDate:"2026-06-19", regNo:"ENPH-REG-61902", proofDoc:"invoice-patel.pdf",    installDoc:"install-pkg-patel.pdf",   issue:"Battery not charging past 80 percent and reporting a cell-imbalance alert in the app.",             issueDate:"2026-11-02", mediaDoc:"screen-patel-batt.jpg",  history:"Commissioned 2026-06-19. Two firmware updates since. Alert first seen 2026-11-02.", portal:"Enphase",   status:"Rejected",     submitted:"2026-10-29", updated:"2026-11-10", followup:"2026-11-15", reason:"Proof of purchase did not match the serial number on file; resubmit with the correct invoice."}
+  ];
+  var WTY_OPEN = {Submitted:1, Acknowledged:1, Approved:1};
+  var WTY_STATUSES = ["Draft","Submitted","Acknowledged","Approved","Resolved","Rejected"];
+  function wtyTag(s){
+    var m={Draft:"mut", Submitted:"brand", Acknowledged:"warn", Approved:"violet", Resolved:"good", Rejected:"bad"};
+    return '<span class="tag '+(m[s]||"mut")+'"><span class="d"></span>'+esc(s)+'</span>';
+  }
+  function wtyfind(id){ for(var i=0;i<warranties.length;i++) if(warranties[i].id===id) return warranties[i]; return null; }
+  function wtyOverdue(w){ return WTY_OPEN[w.status] && w.followup && daysTo(w.followup) < 0; }
+  function wtyNeedsAction(w){ return w.status==="Rejected" || wtyOverdue(w); }
+  var WTY_PORTALS = ["Enphase","SolarEdge","Carrier","Trane","Tesla","Panasonic","REC","Qcells","Fronius","Mitsubishi","Daikin","Lennox","Rheem","Other"];
+
+  // ---------- reimbursements (contractor or employee) ----------
+  var rmbSeq = 806;
+  var REIMB_STATUSES = ["Draft","Submitted","Approved","Rejected","Paid"];
+  var REIMB_CATS = ["Fuel","Materials","Travel","Equipment","Meals","Lodging","Tools","Other"];
+  var REIMB_PAY = ["Company card","Personal, reimburse","Contractor card","Cash","Check"];
+  var REIMB_CURR = ["USD","CAD","EUR","GBP","JMD"];
+  var reimb = [
+    {id:"RMB-801", kind:"employee",   claimant:"Marcus Reyes",    who:"EMP-1042", job:"JOB-118", category:"Fuel",      desc:"Fuel for site visits, week of Nov 3.",                     expDate:"2026-11-07", vendor:"Shell",               amount:86.40,  currency:"USD", receiptDoc:"receipt-reyes-fuel.pdf",   payMethod:"Company card",        status:"Submitted", approvedAmt:0,      payDate:"",           payRef:"",            submitted:"2026-11-08", updated:"2026-11-08", reason:""},
+    {id:"RMB-802", kind:"contractor", claimant:"Delta Electric LLC", who:"VEN-3307", job:"JOB-126", category:"Materials", desc:"Conduit and fittings for the Thompson electrical rough-in.", expDate:"2026-11-05", vendor:"City Electric Supply", amount:214.18, currency:"USD", receiptDoc:"receipt-delta-conduit.pdf", payMethod:"Contractor card",    status:"Approved",  approvedAmt:214.18, payDate:"",           payRef:"",            submitted:"2026-11-06", updated:"2026-11-10", reason:""},
+    {id:"RMB-803", kind:"employee",   claimant:"Priya Nair",      who:"EMP-1088", job:"JOB-131", category:"Travel",    desc:"Tolls and parking at the Sacramento permit office.",        expDate:"2026-11-02", vendor:"City of Sacramento",  amount:38.00,  currency:"USD", receiptDoc:"receipt-nair-parking.pdf", payMethod:"Personal, reimburse", status:"Paid",      approvedAmt:38.00,  payDate:"2026-11-14", payRef:"ACH-20261114-77", submitted:"2026-11-03", updated:"2026-11-14", reason:""},
+    {id:"RMB-804", kind:"contractor", claimant:"Bayside HVAC",    who:"VEN-3311", job:"JOB-125", category:"Equipment", desc:"Vacuum pump rental for the Alvarez changeout.",             expDate:"2026-10-29", vendor:"United Rentals",      amount:145.00, currency:"USD", receiptDoc:"",                        payMethod:"Contractor card",    status:"Rejected",  approvedAmt:0,      payDate:"",           payRef:"",            submitted:"2026-10-30", updated:"2026-11-09", reason:"Receipt not attached; resubmit with the rental invoice."},
+    {id:"RMB-805", kind:"employee",   claimant:"Dana Whitfield",  who:"EMP-1051", job:"JOB-120", category:"Materials", desc:"Replacement fasteners and roof sealant.",                   expDate:"2026-11-09", vendor:"Ferguson",            amount:52.75,  currency:"USD", receiptDoc:"receipt-whitfield.pdf",    payMethod:"Company card",        status:"Submitted", approvedAmt:0,      payDate:"",           payRef:"",            submitted:"2026-11-10", updated:"2026-11-10", reason:""}
+  ];
+  function reimbfind(id){ for(var i=0;i<reimb.length;i++) if(reimb[i].id===id) return reimb[i]; return null; }
+  function reimbTag(s){ var m={Draft:"mut", Submitted:"brand", Approved:"violet", Rejected:"bad", Paid:"good"}; return '<span class="tag '+(m[s]||"mut")+'"><span class="d"></span>'+esc(s)+'</span>'; }
+  function reimbNeedsAction(r){ return r.status==="Rejected"; }
+  var REIMB_OPEN = {Submitted:1, Approved:1};
+  var REIMB_PAYROLL = {name:"Payroll", email:"payroll@cascadesolarair.com"};
+  var REIMB_AP = {name:"Accounts Payable", email:"ap@cascadesolarair.com"};
+  var REIMB_CC = "finance@cascadesolarair.com";
+  function reimbRouteTo(r){ var d = r.kind==="contractor" ? REIMB_AP : REIMB_PAYROLL; return {name:r.routeName||d.name, email:r.routeEmail||d.email}; }
+  function reimbEmail(r){
+    var jb=job(r.job), to=reimbRouteTo(r), amt = r.approvedAmt>0 ? r.approvedAmt : r.amount;
+    return "To:      "+to.name+" <"+(to.email||"email needed")+">\n"
+      +"Cc:      "+REIMB_CC+"\n"
+      +"Subject: "+r.id+" - "+r.kind+" reimbursement for "+(r.claimant||"claimant")+", "+curAmt(amt, r.currency)+"\n\n"
+      +"Hi,\n\n"
+      +"Please process the reimbursement below. The receipt and supporting detail are attached.\n\n"
+      +"Reference:         "+r.id+"\n"
+      +"Claimant:          "+(r.claimant||"-")+"  ("+r.kind+")\n"
+      +(r.kind==="contractor"?"Vendor ID:         ":"Employee ID:       ")+(r.who||"-")+"\n"
+      +"Job / customer:    "+(r.job||"-")+(jb?"  "+jb.cust:"")+"\n"
+      +"Category:          "+r.category+"\n"
+      +"Expense:           "+(r.desc||"-")+"\n"
+      +"Expense date:      "+(r.expDate||"-")+"\n"
+      +"Vendor:            "+(r.vendor||"-")+"\n"
+      +"Amount requested:  "+curAmt(r.amount, r.currency)+"\n"
+      +"Approved amount:   "+(r.approvedAmt>0?curAmt(r.approvedAmt, r.currency):"(pending approval)")+"\n"
+      +"Payment method:    "+r.payMethod+"\n\n"
+      +"Attached: "+(r.receiptDoc||"(receipt not attached)")+"\n\n"
+      +"Thanks,\nCascade Solar + Air  ·  Finance";
+  }
+
+  var recSeq = 7;
+  var recon = [
+    {id:1, date:"2026-11-03", desc:"PG&E rebate deposit, Patel",        type:"deposit",    amt:1400, match:"CLM-589", status:"Reconciled"},
+    {id:2, date:"2026-10-28", desc:"SMUD rebate deposit, Okafor",       type:"deposit",    amt:1000, match:"CLM-590", status:"Reconciled"},
+    {id:3, date:"2026-11-10", desc:"Payment to CED Greentech",          type:"withdrawal", amt:8400, match:"PO-4021", status:"Reconciled"},
+    {id:4, date:"2026-11-12", desc:"Payment to Gemaire",                type:"withdrawal", amt:6150, match:"PO-4024", status:"Reconciled"},
+    {id:5, date:"2026-11-15", desc:"Payment to Soligent",               type:"withdrawal", amt:7630, match:"PO-4022", status:"Variance"},
+    {id:6, date:"2026-11-16", desc:"ACH deposit, unidentified",         type:"deposit",    amt:2700, match:"",        status:"Unmatched"}
+  ];
+
+  // ---------- project invoices (scope vs invoice check) ----------
+  var BILL_CC = "billing@cascadesolarair.com";                 // our own team that invoices the customer
+  var FIELD_TEAM = {name:"Field Operations Team", email:"field-ops@cascadesolarair.com"};
+  var pinvSeq = 2047;
+  // Each entry is one of our internal invoices, tied to a job/contract, plus the scope-check answers.
+  var pinv = [
+    {id:"INV-2041", job:"JOB-118", amt:31500, invDoc:"INV-2041.pdf", allDone:true,  affects:null, note:"", addl:false, addlTasks:"", reflected:null,  routeName:"", routeEmail:"", sent:false},
+    {id:"INV-2042", job:"JOB-120", amt:46800, invDoc:"INV-2042.pdf", allDone:true,  affects:null, note:"", addl:true,  addlTasks:"Added a 20A subpanel breaker and a whole-home surge protective device at the customer's request during the install.", reflected:false, routeName:"", routeEmail:"", sent:false},
+    {id:"INV-2043", job:"JOB-125", amt:18400, invDoc:"INV-2043.pdf", allDone:false, affects:true, note:"Garage duct run replacement was deferred at the customer's request and was not performed.", addl:null, addlTasks:"", reflected:null, routeName:"", routeEmail:"", sent:false},
+    {id:"INV-2044", job:"JOB-131", amt:45400, invDoc:"INV-2044.pdf", allDone:true,  affects:null, note:"", addl:true,  addlTasks:"Replaced 6 sheets of rotted roof decking found during the reroof.", reflected:true, routeName:"", routeEmail:"", sent:false},
+    {id:"INV-2045", job:"JOB-122", amt:52300, invDoc:"INV-2045.pdf", allDone:null,  affects:null, note:"", addl:null, addlTasks:"", reflected:null, routeName:"", routeEmail:"", sent:false},
+    {id:"INV-2046", job:"JOB-134", amt:16250, invDoc:"INV-2046.pdf", allDone:null,  affects:null, note:"", addl:null, addlTasks:"", reflected:null, routeName:"", routeEmail:"", sent:false}
+  ];
+  function pinvfind(id){ for(var i=0;i<pinv.length;i++) if(pinv[i].id===id) return pinv[i]; return null; }
+  function scopeComplete(e){
+    if(e.allDone==null) return false;
+    if(e.allDone===false) return e.affects!=null;
+    if(e.addl==null) return false;
+    if(e.addl===false) return true;
+    return e.reflected!=null;
+  }
+  // keep the branch answers consistent when a parent answer changes
+  function normBill(e){
+    if(e.allDone===true){ e.affects=null; e.note=""; if(e.addl!==true){ e.addlTasks=""; e.reflected=null; } }
+    else if(e.allDone===false){ e.addl=null; e.addlTasks=""; e.reflected=null; }
+    else { e.affects=null; e.addl=null; e.addlTasks=""; e.reflected=null; }
+    e.sent=false;
+  }
+  function billStatus(e){
+    if(!scopeComplete(e)) return {k:(e.allDone==null?"Not checked":"In review"), cls:(e.allDone==null?"mut":"warn"), action:null, ex:false, msg:""};
+    if(e.allDone===false){
+      if(e.affects) return {k:"Credit customer", cls:"bad", action:"credit", ex:true, msg:"Not all contracted tasks were performed and it affects billing. The invoice is likely overstated; issue a credit or revise it before it goes to the customer."};
+      return {k:"Matched", cls:"good", action:null, ex:false, msg:"Some contracted tasks were not performed, but the amount billed is unaffected."};
+    }
+    if(e.addl===false) return {k:"Matched", cls:"good", action:null, ex:false, msg:"The invoice matches the contracted scope."};
+    if(e.reflected) return {k:"Matched", cls:"good", action:null, ex:false, msg:"Additional work was performed and is already on the customer invoice."};
+    return {k:"Bill remaining", cls:"bad", action:"route", ex:true, msg:"Additional work beyond the contract was performed but is not on the customer invoice. Get the updated price from the field team and bill the remaining amount."};
+  }
+
+  // ---------- dashboard ----------
+  function dashData(){
+    var poEx=pos.filter(function(p){ return poMatch(p).ex; });
+    var poExAmt=poEx.reduce(function(s,p){ var m=poMatch(p); return s+(m.variance||p.inv||p.po); },0);
+    var billEx=pinv.filter(function(e){ return billStatus(e).ex; });
+    var billExAmt=billEx.reduce(function(s,e){ return s+(billStatus(e).action==="credit"?Math.max(0,e.amt-job(e.job).contract):0); },0);
+    var inflight=claims.filter(function(c){ return IN_FLIGHT[c.status]; });
+    var inflightAmt=inflight.reduce(function(s,c){ return s+c.amt; },0);
+    var rejected=claims.filter(function(c){ return c.status==="Rejected"; });
+    var rejAmt=rejected.reduce(function(s,c){ return s+c.amt; },0);
+    var overdue=claims.filter(isOverdue);
+    var wtyAct=warranties.filter(wtyNeedsAction);
+    var reimbAct=reimb.filter(reimbNeedsAction);
+    return {poEx:poEx, poExAmt:poExAmt, billEx:billEx, billExAmt:billExAmt, inflight:inflight, inflightAmt:inflightAmt, rejected:rejected, rejAmt:rejAmt, overdue:overdue, wtyAct:wtyAct, reimbAct:reimbAct};
+  }
+  var TRADES=[
+    {k:"Solar",      tc:"var(--t-solar)", kw:/solar|panel|battery|reroof/i,     ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.2M12 19.2v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6"/></svg>'},
+    {k:"HVAC",       tc:"var(--t-hvac)",  kw:/hvac|heat pump|duct|furnace|\bac\b/i, ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h9a2.6 2.6 0 1 1-2.6 2.6"/></svg>'},
+    {k:"Plumbing",   tc:"var(--t-plumb)", kw:/plumb|water|pipe/i,                ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/><path d="M9.4 14a2.6 2.6 0 0 0 2.6 2.4"/></svg>'},
+    {k:"Pool",       tc:"var(--t-pool)",  kw:/pool|spa/i,                        ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15c1.4 0 1.4-1.3 2.8-1.3S7.2 15 8.6 15 10 13.7 11.4 13.7 12.8 15 14.2 15s1.4-1.3 2.8-1.3S18.4 15 19.8 15"/><path d="M3 19c1.4 0 1.4-1.3 2.8-1.3S7.2 19 8.6 19 10 17.7 11.4 17.7 12.8 19 14.2 19s1.4-1.3 2.8-1.3S18.4 19 19.8 19"/><path d="M8 11V6a2 2 0 0 1 4 0M16 11V6"/></svg>'},
+    {k:"Electrical", tc:"var(--t-elec)",  kw:/electric/i,                        ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L5 13h5l-1 9 8-11h-5l1-9z"/></svg>'}
+  ];
+  function renderSvc(){
+    var el=$("dash-svc"); if(!el) return;
+    el.innerHTML=TRADES.map(function(t){
+      var js=jobs.filter(function(j){ return t.kw.test(j.type); });
+      var val=js.reduce(function(s,j){ return s+j.contract+j.co; },0);
+      return '<div class="svc-c" style="--tc:'+t.tc+'"><div class="ic">'+t.ic+'</div>'
+        +'<div class="nm">'+t.k+'</div><div class="mt num">'+js.length+'</div>'
+        +'<div class="ds">'+(js.length?money0(val)+" contracted":"service line")+'</div></div>';
+    }).join("");
+  }
+  function renderDash(){
+    var d=dashData();
+    renderSvc();
+    $("dash-kpis").innerHTML=[
+      {k:"Incentive cash in flight", v:money0(d.inflightAmt), d:d.inflight.length+" open claims", c:""},
+      {k:"Rejected, needs rework",   v:money0(d.rejAmt),      d:d.rejected.length+" claims to resubmit", c:"alert"},
+      {k:"PO exceptions",            v:money0(d.poExAmt),     d:d.poEx.length+" to resolve", c:"warnk"},
+      {k:"Billing to resolve",       v:d.billEx.length+"",    d:"extra work or corrections", c:"warnk"}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+
+    // work queue: rejected claims, overdue follow-ups, PO exceptions, billing discrepancies
+    var items=[];
+    d.rejected.forEach(function(c){ items.push({sev:"hi", t:c.id+"  "+c.program+" rejected", s:esc(c.reason)+"  Customer: "+c.cust, amt:c.amt, go:"claims", sort:c.amt+100000}); });
+    d.overdue.forEach(function(c){ if(c.status!=="Rejected") items.push({sev:"hi", t:c.id+"  follow-up overdue by "+Math.abs(daysTo(c.followup))+"d", s:c.program+", "+c.status+"  Customer: "+c.cust, amt:c.amt, go:"claims", sort:c.amt+80000}); });
+    d.billEx.forEach(function(e){ var st=billStatus(e), jb=job(e.job); items.push({sev:"med", t:e.id+"  "+st.k, s:jb.cust+", "+jb.type, amt:(st.action==="credit"?Math.max(0,e.amt-jb.contract):0), go:"billing", sort:40000}); });
+    d.poEx.forEach(function(p){ var m=poMatch(p); items.push({sev:"med", t:p.id+"  "+m.k, s:p.vendor+", "+p.cat, amt:m.variance||0, go:"po", sort:(m.variance||0)+20000}); });
+    d.wtyAct.forEach(function(w){ var jb=job(w.job); items.push({sev:"hi", t:w.id+"  warranty "+(w.status==="Rejected"?"rejected":"follow-up overdue"), s:w.mfr+" "+w.model+(w.status==="Rejected"&&w.reason?", "+w.reason:"")+"  Customer: "+(jb?jb.cust:"-"), amt:0, go:"warranty", sort:90000}); });
+    d.reimbAct.forEach(function(r){ items.push({sev:"med", t:r.id+"  reimbursement rejected", s:r.claimant+" ("+r.kind+")"+(r.reason?", "+r.reason:""), amt:0, go:"reimb", sort:30000}); });
+    items.sort(function(a,b){ return b.sort-a.sort; });
+    $("dash-queue").innerHTML = items.map(function(x){
+      return '<div class="q" data-go="'+x.go+'"><span class="sev '+x.sev+'"></span><div class="qmain"><div class="qt">'+esc(x.t)+'</div><div class="qs">'+esc(x.s)+'</div></div><div class="qamt num">'+(x.amt?money(x.amt):"")+'</div><div class="qgo">Open</div></div>';
+    }).join("") || '<div class="q"><div class="qmain"><div class="qt">All clear.</div><div class="qs">No exceptions need attention.</div></div></div>';
+    $("dash-queue").querySelectorAll(".q[data-go]").forEach(function(el){ el.addEventListener("click", function(){ go(el.getAttribute("data-go")); }); });
+
+    // cash
+    var incomingApproved=claims.filter(function(c){ return c.status==="Approved"; }).reduce(function(s,c){ return s+c.amt; },0);
+    var incomingPipeline=claims.filter(function(c){ return c.status==="Submitted"||c.status==="Pending"||c.status==="Waitlisted"; }).reduce(function(s,c){ return s+c.amt; },0);
+    var vendorPay=pos.filter(function(p){ return poMatch(p).k==="Matched"; }).reduce(function(s,p){ return s+p.inv; },0);
+    var collected=claims.filter(function(c){ return c.status==="Paid"; }).reduce(function(s,c){ return s+c.amt; },0);
+    $("dash-cash").innerHTML=
+      '<div class="sr"><span class="l">Approved claims, awaiting payment</span><span class="v">'+money(incomingApproved)+'</span></div>'
+      +'<div class="sr"><span class="l">Claims in the pipeline (submitted, pending)</span><span class="v">'+money(incomingPipeline)+'</span></div>'
+      +'<div class="sr"><span class="l">Collected this period</span><span class="v">'+money(collected)+'</span></div>'
+      +'<div class="sr tot"><span class="l">Vendor invoices cleared to pay</span><span class="v">'+money(-vendorPay)+'</span></div>'
+      +'<div class="snap"><span class="k">Net incentive receivable</span><span class="v num">'+money(incomingApproved+incomingPipeline)+'</span></div>';
+
+    // status bars
+    var statuses=["Submitted","Pending","Approved","Waitlisted","Rejected","Paid"];
+    var byStatus={}; claims.forEach(function(c){ byStatus[c.status]=(byStatus[c.status]||0)+c.amt; });
+    var mx=Math.max.apply(null, statuses.map(function(s){ return byStatus[s]||0; }).concat([1]));
+    var colors={Submitted:"var(--brand)", Pending:"var(--warn)", Approved:"var(--violet)", Waitlisted:"var(--warn)", Rejected:"var(--bad)", Paid:"var(--good)"};
+    $("dash-status").innerHTML = statuses.map(function(s){
+      var v=byStatus[s]||0, w=Math.max(2,Math.round(v/mx*100));
+      return '<div style="margin-bottom:11px"><div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px"><span style="color:var(--muted)">'+s+'</span><span class="num strong" style="color:var(--ink); font-weight:600">'+money(v)+'</span></div><div class="bar"><span style="width:'+w+'%; background:'+colors[s]+'"></span></div></div>';
+    }).join("");
+  }
+
+  // ---------- purchase orders ----------
+  function renderPO(){
+    var open=pos.filter(function(p){ return poMatch(p).k!=="Matched"; });
+    var openAmt=pos.filter(function(p){ return poMatch(p).k!=="Matched"; }).reduce(function(s,p){ return s+(p.inv||p.po); },0);
+    var ex=pos.filter(function(p){ return poMatch(p).ex; });
+    var exAmt=ex.reduce(function(s,p){ var m=poMatch(p); return s+(m.variance||p.inv||p.po); },0);
+    var ready=pos.filter(function(p){ return poMatch(p).k==="Matched"; });
+    var readyAmt=ready.reduce(function(s,p){ return s+p.inv; },0);
+    var awaiting=pos.filter(function(p){ var k=poMatch(p).k; return k==="Awaiting vendor bill"||k==="Awaiting delivery"; }).length;
+    $("po-kpis").innerHTML=[
+      {k:"Open PO value", v:money0(openAmt), d:open.length+" not yet matched", c:""},
+      {k:"Exceptions", v:money0(exAmt), d:ex.length+" price or qty variances", c:"alert"},
+      {k:"Cleared to pay", v:money0(readyAmt), d:ready.length+" fully matched", c:"goodk"},
+      {k:"Awaiting docs", v:awaiting+"", d:"vendor bill or delivery missing", c:"warnk"}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+
+    var rows='<tr><th>Internal PO #</th><th>Vendor</th><th class="r">Units</th><th class="r">Unit price</th><th class="r">PO total</th><th>Vendor bill</th><th>Delivered</th><th>Match</th><th class="r"></th></tr>';
+    pos.slice().sort(function(a,b){ return poMatch(b).ex - poMatch(a).ex || (poMatch(b).variance - poMatch(a).variance); }).forEach(function(p){
+      var m=poMatch(p);
+      var bill = p.inv==null ? '<span class="none">awaiting</span>' : '<div class="idcell mono">'+esc(p.invNo)+'</div><span class="num">'+money(p.inv)+'</span>';
+      var short = p.recvQty!=null && p.recvQty < p.qty;
+      var deliv = p.recvQty==null ? '<span class="none">awaiting</span>' : '<span class="num'+(short?' strong':'')+'"'+(short?' style="color:var(--bad)"':'')+'>'+p.recvQty+' / '+p.qty+'</span><div class="idcell">units received</div>';
+      rows+='<tr class="clickrow" data-po-open="'+p.id+'"><td class="mono idcell strong">'+esc(p.id)+'</td><td class="strong">'+esc(p.vendor)+'</td>'
+        +'<td class="r num">'+p.qty+'</td><td class="r num">'+money(p.unitPrice)+'</td><td class="r num strong">'+money(p.po)+'</td>'
+        +'<td>'+bill+'</td><td>'+deliv+'</td>'
+        +'<td><span class="tag '+m.cls+'"><span class="d"></span>'+m.k+'</span>'+(m.ex?'<div class="idcell" style="color:var(--bad)">'+money(m.variance)+' at risk</div>':'')+'</td>'
+        +'<td class="r"><button class="btn ghost sm" data-po-open="'+p.id+'">Open</button></td></tr>';
+    });
+    $("po-tbl").innerHTML=rows;
+    $("po-tbl").querySelectorAll("[data-po-open]").forEach(function(b){ b.addEventListener("click", function(e){ e.stopPropagation(); openPO(b.getAttribute("data-po-open")); }); });
+  }
+  function pofind(id){ for(var i=0;i<pos.length;i++) if(pos[i].id===id) return pos[i]; return null; }
+  function pickName(id){ var el=$(id); return (el && el.files && el.files[0]) ? el.files[0].name : ""; }
+  function poTotalPreview(){ var q=parseFloat($("po-qty").value), pr=parseFloat($("po-price").value); var t=(isNaN(q)||isNaN(pr))?0:q*pr; $("po-total").textContent="PO total: "+money(t); }
+  function initPO(){
+    $("po-qty").addEventListener("input", poTotalPreview);
+    $("po-price").addEventListener("input", poTotalPreview);
+    $("po-add").addEventListener("click", function(){
+      var id=$("po-ponum").value.trim(), v=$("po-vendor").value.trim(), q=parseFloat($("po-qty").value), pr=parseFloat($("po-price").value);
+      if(!id){ $("po-msg").style.color="var(--bad)"; $("po-msg").textContent="Enter your internal PO number."; return; }
+      if(pofind(id)){ $("po-msg").style.color="var(--bad)"; $("po-msg").textContent=id+" already exists. Use a unique internal PO number."; return; }
+      if(!v){ $("po-msg").style.color="var(--bad)"; $("po-msg").textContent="Enter the vendor name."; return; }
+      if(isNaN(q)||q<=0||isNaN(pr)||pr<=0){ $("po-msg").style.color="var(--bad)"; $("po-msg").textContent="Enter units ordered and a unit price above zero."; return; }
+      var doc=pickName("po-doc");
+      pos.push({id:id, vendor:v, cat:$("po-cat").value, qty:q, unitPrice:pr, po:q*pr,
+        invNo:"", invQty:null, inv:null, recvQty:null, rec:null, poDoc:doc||"", invDoc:"", delivDoc:"", routeName:"", routeEmail:"", discSent:false, date:ASOF});
+      $("po-ponum").value=""; $("po-vendor").value=""; $("po-qty").value=""; $("po-price").value=""; if($("po-doc")) $("po-doc").value=""; poTotalPreview();
+      $("po-msg").style.color="var(--good)"; $("po-msg").textContent=id+" recorded"+(doc?" with "+doc:"")+". Next: the vendor bill.";
+      refreshAll();
+      openPO(id, 2);   // flow straight into step 2 (vendor bill)
+    });
+    $("po-scrim").addEventListener("click", closePO);
+    $("dr-close").addEventListener("click", closePO);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closePO(); });
+  }
+
+  // ---------- PO three-way-match wizard (one guided step at a time) ----------
+  var drawer={id:null, step:1};
+  function docChip(name){ return name ? '<span class="chip" title="'+esc(name)+'">'+esc(name)+'</span>' : '<span class="chip miss">not attached</span>'; }
+  function stepDone(p,n){ if(n===1) return true; if(n===2) return p.inv!=null; if(n===3) return p.recvQty!=null; if(n===4) return p.inv!=null&&p.recvQty!=null; if(n===5) return p.discSent; return false; }
+  function canStep(p,n){ if(n===1||n===2) return true; if(n===3) return p.inv!=null; if(n===4) return p.inv!=null&&p.recvQty!=null; if(n===5) return p.inv!=null&&p.recvQty!=null&&poMatch(p).ex; return false; }
+  function firstOpenStep(p){ if(p.inv==null) return 2; if(p.recvQty==null) return 3; return 4; }
+  function stepsFor(p){ var a=[{n:1,k:"Order"},{n:2,k:"Vendor bill"},{n:3,k:"Delivery"},{n:4,k:"Match"}]; if(p.inv!=null&&p.recvQty!=null&&poMatch(p).ex) a.push({n:5,k:"Route"}); return a; }
+  function openPO(id, step){ var p=pofind(id); if(!p) return; drawer.id=id; drawer.step=step||firstOpenStep(p); drawPO(p); $("po-scrim").classList.add("on"); $("po-drawer").classList.add("on"); $("po-drawer").setAttribute("aria-hidden","false"); }
+  function closePO(){ drawer.id=null; $("po-scrim").classList.remove("on"); $("po-drawer").classList.remove("on"); $("po-drawer").setAttribute("aria-hidden","true"); }
+  function setStep(n){ var p=pofind(drawer.id); if(!p||!canStep(p,n)) return; drawer.step=n; drawPO(p); var b=$("dr-body"); if(b) b.scrollTop=0; }
+  function routeTo(p){ var vr=vrec(p.vendor); return {name:p.routeName||vr.contact, email:p.routeEmail||vr.email}; }
+  function discEmail(p){
+    var m=poMatch(p), to=routeTo(p);
+    var lines=m.flags.map(function(f){ return "  - "+f.msg; }).join("\n");
+    return "To:      "+to.name+" <"+(to.email||"email needed")+">\n"
+      +"Cc:      "+AP_CC+"\n"
+      +"Subject: "+p.id+" - discrepancy on your invoice "+p.invNo+", please reissue\n\n"
+      +"Hello,\n\n"
+      +"Our three-way match on purchase order "+p.id+" found a discrepancy against your\ninvoice "+p.invNo+". Details are below; please review and send a corrected invoice.\n\n"
+      +"Internal PO:    "+p.id+"   ("+p.qty+" x "+p.cat+" @ "+money(p.unitPrice)+"/unit = "+money(p.po)+")\n"
+      +"Vendor:         "+p.vendor+"   "+(vrec(p.vendor).addr||"")+"\n"
+      +"Your invoice:   "+p.invNo+"   billed "+money(p.inv)+(p.invQty!=null?" for "+p.invQty+" unit"+(p.invQty===1?"":"s"):"")+"\n"
+      +"Delivered:      "+p.recvQty+" of "+p.qty+" units received\n\n"
+      +"Discrepancy:\n"+lines+"\n\n"
+      +"Amount in question: "+money(m.variance)+"\n\n"
+      +"Attached for your reference:\n"
+      +"  - Our purchase order: "+(p.poDoc||"(not attached)")+"\n"
+      +"  - Your invoice: "+(p.invDoc||"(not attached)")+"\n"
+      +"  - Delivery / packing slip: "+(p.delivDoc||"(not attached)")+"\n\n"
+      +"Thank you,\nCascade Solar + Air  ·  Purchasing";
+  }
+  function drawPO(p){
+    var m=poMatch(p), meta=stepsFor(p), N=meta.length;
+    $("dr-id").textContent=p.id;
+    $("dr-sub").textContent=p.vendor+"  ·  "+p.cat;
+    // breadcrumb
+    var bc='<div class="steps">';
+    meta.forEach(function(s,i){
+      var done=stepDone(p,s.n), active=drawer.step===s.n, clk=canStep(p,s.n)&&!active;
+      bc+='<div class="stp'+(active?' active':(done?' done':''))+(clk?' clk':'')+'" data-step="'+s.n+'"><span class="bub">'+s.n+'</span><span class="lb">'+s.k+'</span></div>';
+      if(i<meta.length-1) bc+='<span class="stp-ln'+(done?' fill':'')+'"></span>';
+    });
+    bc+='</div>';
+    // active step body
+    var st=drawer.step, tag='Step '+st+' of '+N, body='', title='';
+    if(st===1){
+      title='Purchase order';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Recorded from your system. This is what the vendor was asked to supply and bill.</div>'
+        +'<div class="recap"><div class="rr"><span class="l">Internal PO #</span><span class="v mono">'+esc(p.id)+'</span></div>'
+        +'<div class="rr"><span class="l">Units ordered</span><span class="v">'+p.qty+'</span></div>'
+        +'<div class="rr"><span class="l">Unit price</span><span class="v">'+money(p.unitPrice)+'</span></div>'
+        +'<div class="rr"><span class="l">PO total</span><span class="v">'+money(p.po)+'</span></div>'
+        +'<div class="rr"><span class="l">PO document</span><span class="v">'+docChip(p.poDoc)+'</span></div></div>'
+        +'<div class="wnav"><span></span><button class="btn" data-adv="2">Continue to vendor bill</button></div></div>';
+    } else if(st===2){
+      title='Vendor bill';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Enter the vendor invoice for this PO, including how many units it bills for, and attach the bill.</div>'
+        +'<div class="dgrid"><div class="f"><label for="dr-invno">Invoice number</label><input type="text" id="dr-invno" value="'+esc(p.invNo||"")+'" placeholder="vendor invoice #"></div>'
+        +'<div class="f"><label for="dr-invqty">Quantity billed (units)</label><input type="number" id="dr-invqty" min="0" step="1" value="'+(p.invQty==null?"":p.invQty)+'" placeholder="units on the invoice"></div></div>'
+        +'<div class="dgrid"><div class="f"><label for="dr-inv">Invoice amount ($)</label><input type="number" id="dr-inv" min="0" step="0.01" value="'+(p.inv==null?"":p.inv)+'" placeholder="billed total"></div>'
+        +'<div class="f"><label for="dr-invdoc">Attach vendor bill</label><input type="file" id="dr-invdoc" accept=".pdf,.png,.jpg,.jpeg"></div></div>'
+        +'<div class="drow"><span class="l">On file</span><span class="v">'+docChip(p.invDoc)+'</span></div>'
+        +'<div class="wnav"><button class="lnk" data-adv="1">Back</button><button class="btn" id="dr-bill">Save and continue</button></div></div>';
+    } else if(st===3){
+      title='Delivery paperwork';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">From the signed packing slip or receiving record: how many units actually arrived?</div>'
+        +'<div class="dgrid"><div class="f"><label for="dr-recv">Units received</label><input type="number" id="dr-recv" min="0" step="1" value="'+(p.recvQty==null?"":p.recvQty)+'" placeholder="of '+p.qty+' ordered"></div>'
+        +'<div class="f"><label for="dr-delivdoc">Attach packing slip</label><input type="file" id="dr-delivdoc" accept=".pdf,.png,.jpg,.jpeg"></div></div>'
+        +'<div class="drow"><span class="l">On file</span><span class="v">'+docChip(p.delivDoc)+'</span></div>'
+        +'<div class="wnav"><button class="lnk" data-adv="2">Back</button><button class="btn" id="dr-deliv">Save and run the match</button></div></div>';
+    } else if(st===4){
+      title='Three-way match';
+      var res = !m.ex
+        ? '<div class="oknote"><span class="fi">OK</span><div>Perfect match. The PO, the vendor bill and the delivery all agree. Cleared to pay '+money(p.inv)+'.</div></div>'
+        : m.flags.map(function(f){ return '<div class="flag"><span class="fi">!</span><div>'+esc(f.msg)+'</div></div>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">The system compares all three automatically.</div>'
+        +'<div class="recap"><div class="rr"><span class="l">Ordered (PO)</span><span class="v">'+p.qty+' @ '+money(p.unitPrice)+' = '+money(p.po)+'</span></div>'
+        +'<div class="rr"><span class="l">Billed (vendor)</span><span class="v">'+esc(p.invNo||"-")+' · '+(p.invQty!=null?p.invQty+' units · ':'')+money(p.inv)+'</span></div>'
+        +'<div class="rr"><span class="l">Received (delivery)</span><span class="v"'+(p.recvQty<p.qty?' style="color:var(--bad)"':'')+'>'+p.recvQty+' of '+p.qty+' units</span></div></div>'
+        +res
+        +'<div class="wnav"><button class="lnk" data-adv="3">Back</button>'+(m.ex?'<button class="btn" data-adv="5">Route discrepancy</button>':'<button class="btn ghost sm" id="dr-done">Done</button>')+'</div></div>';
+    } else if(st===5){
+      title='Route discrepancy';
+      var to=routeTo(p);
+      var atts='<span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">'+docChip(p.poDoc)+docChip(p.invDoc)+docChip(p.delivDoc)+'</span>';
+      var route='<div style="font-size:12px;color:var(--ink2);line-height:1.55">Send the discrepancy to whoever should fix the invoice (default: the vendor), copied to your team. Your PO, the vendor invoice and the delivery doc are attached for reference.</div>'
+        +'<div class="dgrid"><div class="f"><label for="dr-toname">Send to (name)</label><input type="text" id="dr-toname" value="'+esc(to.name)+'"></div>'
+        +'<div class="f"><label for="dr-toemail">Send to (email)</label><input type="email" id="dr-toemail" value="'+esc(to.email)+'" placeholder="name@vendor.com"></div></div>'
+        +'<div class="drow"><span class="l">Cc (your team)</span><span class="v mono" style="font-weight:600; text-align:right">'+esc(AP_CC)+'</span></div>'
+        +'<div class="drow"><span class="l">Attachments</span><span class="v">'+atts+'</span></div>';
+      route+= p.discSent
+        ? '<div class="sent">Sent to '+esc(to.name)+' · '+esc(p.id)+' / invoice '+esc(p.invNo)+'</div>'
+        : '<div class="act-row" style="justify-content:flex-start"><button class="btn" id="dr-submit">Send discrepancy</button></div>';
+      route+='<div style="font-size:10.5px;color:var(--faint)">'+(p.discSent?'Sent':'Preview')+' · in production this emails through your mail / AP system with the three files attached.</div>';
+      route+='<div class="email" id="dr-email">'+esc(discEmail(p))+'</div>';
+      body='<div class="dblk-b">'+route+'<div class="wnav"><button class="lnk" data-adv="4">Back to match</button><span></span></div></div>';
+    }
+    var stepword = st===4?(m.ex?'exception':'cleared'):(st===5?'submit':['','recorded','reconcile','receive'][st]||'');
+    $("dr-body").innerHTML=bc+'<div class="dblk"><div class="dblk-h"><span class="t">'+title+'</span><span class="step">'+tag+(stepword?' · '+stepword:'')+'</span></div>'+body+'</div>';
+    // breadcrumb + nav wiring
+    $("dr-body").querySelectorAll("[data-step]").forEach(function(el){ el.addEventListener("click", function(){ setStep(parseInt(el.getAttribute("data-step"),10)); }); });
+    $("dr-body").querySelectorAll("[data-adv]").forEach(function(el){ el.addEventListener("click", function(){ setStep(parseInt(el.getAttribute("data-adv"),10)); }); });
+    if($("dr-done")) $("dr-done").addEventListener("click", closePO);
+    if($("dr-bill")) $("dr-bill").addEventListener("click", function(){
+      var no=$("dr-invno").value.trim(), amt=$("dr-inv").value.trim(), qv=$("dr-invqty").value.trim();
+      if(amt===""||isNaN(parseFloat(amt))){ closeNote("Enter the invoice amount the vendor is billing."); return; }
+      p.invNo=no; p.inv=parseFloat(amt); p.invQty=(qv===""||isNaN(parseInt(qv,10)))?p.qty:parseInt(qv,10);
+      var d=pickName("dr-invdoc"); if(d) p.invDoc=d;
+      p.discSent=false; drawer.step=3; drawPO(p); refreshAll();
+      $("po-msg").style.color="var(--good)"; $("po-msg").textContent=p.id+" vendor bill "+(no||"(no number)")+" saved for "+p.invQty+" units. Now log the delivery.";
+    });
+    if($("dr-toname")) $("dr-toname").addEventListener("input", function(){ p.routeName=$("dr-toname").value; var e=$("dr-email"); if(e) e.textContent=discEmail(p); });
+    if($("dr-toemail")) $("dr-toemail").addEventListener("input", function(){ p.routeEmail=$("dr-toemail").value; var e=$("dr-email"); if(e) e.textContent=discEmail(p); });
+    if($("dr-deliv")) $("dr-deliv").addEventListener("click", function(){
+      var r=$("dr-recv").value.trim();
+      if(r===""||isNaN(parseInt(r,10))){ closeNote("Enter the number of units received."); return; }
+      p.recvQty=parseInt(r,10); p.rec=p.recvQty*p.unitPrice;
+      var d=pickName("dr-delivdoc"); if(d) p.delivDoc=d;
+      p.discSent=false; drawer.step=4; drawPO(p); refreshAll();
+      var mm=poMatch(p); $("po-msg").style.color=mm.ex?"var(--bad)":"var(--good)";
+      $("po-msg").textContent=p.id+": "+(mm.ex?mm.k+" flagged ("+money(mm.variance)+" at risk).":"perfect match, cleared to pay.");
+    });
+    if($("dr-submit")) $("dr-submit").addEventListener("click", function(){
+      var nm=$("dr-toname").value.trim(), em=$("dr-toemail").value.trim();
+      if(!em){ closeNote("Enter the email address to send the discrepancy to."); return; }
+      p.routeName=nm; p.routeEmail=em; p.discSent=true; drawPO(p); refreshAll();
+      $("po-msg").style.color="var(--brand)"; $("po-msg").textContent="Discrepancy on "+p.id+" sent to "+(nm||em)+", CC your team, with the 3 documents attached.";
+    });
+  }
+  function closeNote(t){ $("po-msg").style.color="var(--bad)"; $("po-msg").textContent=t; }
+
+  // ---------- project billing ----------
+  function renderBilling(){
+    var invoiced=pinv.reduce(function(s,e){ return s+e.amt; },0);
+    var route=pinv.filter(function(e){ return billStatus(e).action==="route"; });
+    var credit=pinv.filter(function(e){ return billStatus(e).action==="credit"; });
+    var matched=pinv.filter(function(e){ return billStatus(e).k==="Matched"; });
+    var unchecked=pinv.filter(function(e){ return !scopeComplete(e); });
+    $("bill-kpis").innerHTML=[
+      {k:"Invoiced to date", v:money0(invoiced), d:pinv.length+" project invoices", c:""},
+      {k:"Extra work to bill", v:route.length+"", d:"performed, not yet invoiced", c:"alert"},
+      {k:"Needs correction", v:credit.length+"", d:"scope short, affects billing", c:"warnk"},
+      {k:"Matched", v:matched.length+"", d:(unchecked.length?unchecked.length+" still to check":"within scope"), c:"goodk"}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+
+    var rows='<tr><th>Invoice #</th><th>Project</th><th>Customer</th><th class="r">Contract</th><th class="r">Invoiced</th><th>Scope check</th><th class="r"></th></tr>';
+    pinv.slice().sort(function(a,b){ return (billStatus(b).ex?1:0)-(billStatus(a).ex?1:0) || (scopeComplete(a)?1:0)-(scopeComplete(b)?1:0); }).forEach(function(e){
+      var st=billStatus(e), jb=job(e.job);
+      rows+='<tr class="clickrow" data-bill-open="'+e.id+'"><td class="mono idcell strong">'+esc(e.id)+'</td><td class="mono idcell">'+esc(e.job)+'</td><td class="strong">'+esc(jb.cust)+'<div class="idcell">'+esc(jb.type)+'</div></td>'
+        +'<td class="r num">'+money(jb.contract)+'</td><td class="r num strong">'+money(e.amt)+'</td>'
+        +'<td><span class="tag '+st.cls+'"><span class="d"></span>'+st.k+'</span></td>'
+        +'<td class="r"><button class="btn ghost sm" data-bill-open="'+e.id+'">'+(scopeComplete(e)?"Open":"Check")+'</button></td></tr>';
+    });
+    $("bill-tbl").innerHTML=rows;
+    $("bill-tbl").querySelectorAll("[data-bill-open]").forEach(function(b){ b.addEventListener("click", function(ev){ ev.stopPropagation(); openBill(b.getAttribute("data-bill-open")); }); });
+  }
+  function initBill(){
+    $("bill-job").innerHTML = jobs.map(function(j){ return '<option value="'+j.id+'">'+j.id+' '+esc(j.cust)+'</option>'; }).join("");
+    $("bill-add").addEventListener("click", function(){
+      var id=$("bill-no").value.trim(), a=parseFloat($("bill-amt").value);
+      if(!id){ $("bill-msg").style.color="var(--bad)"; $("bill-msg").textContent="Enter your internal invoice number."; return; }
+      if(pinvfind(id)){ $("bill-msg").style.color="var(--bad)"; $("bill-msg").textContent=id+" already exists. Use a unique invoice number."; return; }
+      if(isNaN(a)||a<=0){ $("bill-msg").style.color="var(--bad)"; $("bill-msg").textContent="Enter the invoice amount above zero."; return; }
+      var doc=pickName("bill-doc");
+      pinv.push({id:id, job:$("bill-job").value, amt:a, invDoc:doc||"", allDone:null, affects:null, note:"", addl:null, addlTasks:"", reflected:null, routeName:"", routeEmail:"", sent:false});
+      $("bill-no").value=""; $("bill-amt").value=""; if($("bill-doc")) $("bill-doc").value="";
+      $("bill-msg").style.color="var(--good)"; $("bill-msg").textContent=id+" recorded"+(doc?" with "+doc:"")+". Now run the scope check.";
+      refreshAll();
+      openBill(id, 2);   // flow straight into the scope check
+    });
+    $("bill-scrim").addEventListener("click", closeBill);
+    $("bd-close").addEventListener("click", closeBill);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeBill(); });
+  }
+
+  // ---------- project-invoice scope-check wizard ----------
+  var bdraw={id:null, step:1};
+  function stepsForBill(e){ var a=[{n:1,k:"Invoice"},{n:2,k:"Scope"},{n:3,k:"Result"}]; if(billStatus(e).action==="route") a.push({n:4,k:"Route"}); return a; }
+  function stepDoneBill(e,n){ if(n===1) return true; if(n===2) return scopeComplete(e); if(n===3) return scopeComplete(e); if(n===4) return e.sent; return false; }
+  function canStepBill(e,n){ if(n===1||n===2) return true; if(n===3) return scopeComplete(e); if(n===4) return billStatus(e).action==="route"; return false; }
+  function firstStepBill(e){ return scopeComplete(e)?3:2; }
+  function openBill(id, step){ var e=pinvfind(id); if(!e) return; bdraw.id=id; bdraw.step=step||firstStepBill(e); drawBill(e); $("bill-scrim").classList.add("on"); $("bill-drawer").classList.add("on"); $("bill-drawer").setAttribute("aria-hidden","false"); }
+  function closeBill(){ bdraw.id=null; $("bill-scrim").classList.remove("on"); $("bill-drawer").classList.remove("on"); $("bill-drawer").setAttribute("aria-hidden","true"); }
+  function setBillStep(n){ var e=pinvfind(bdraw.id); if(!e||!canStepBill(e,n)) return; bdraw.step=n; drawBill(e); var b=$("bd-body"); if(b) b.scrollTop=0; }
+  function routeToBill(e){ return {name:e.routeName||FIELD_TEAM.name, email:e.routeEmail||FIELD_TEAM.email}; }
+  function billEmail(e){
+    var jb=job(e.job), to=routeToBill(e);
+    return "To:      "+to.name+" <"+(to.email||"email needed")+">\n"
+      +"Cc:      "+BILL_CC+"\n"
+      +"Subject: "+e.id+" - additional work pricing needed, "+e.job+"\n\n"
+      +"Hi team,\n\n"
+      +"Invoice "+e.id+" for "+e.job+" "+jb.cust+" covers the contracted scope, but additional work\nwas performed that is not yet on the customer's invoice. Please send the price for the\nadditional work so we can bill the customer the remaining amount.\n\n"
+      +"Internal invoice: "+e.id+"\n"
+      +"Project:          "+e.job+"  "+jb.cust+", "+jb.city+" CA\n"
+      +"Contract scope:   "+jb.type+"\n"
+      +"Contract value:   "+money(jb.contract)+"\n"
+      +"Invoiced so far:  "+money(e.amt)+"\n\n"
+      +"Additional work performed (not yet billed):\n  "+(e.addlTasks||"(describe the extra work)")+"\n\n"
+      +"Please reply with the price for the additional work.\n\n"
+      +"Thanks,\nCascade Solar + Air  ·  Billing\n\n"
+      +"Attached: "+(e.invDoc||"(invoice not attached)");
+  }
+  function ynBtn(e,field,val,label){ var on=e[field]===(val==="y"); return '<button class="yn'+(on?' on'+(val==="n"?' no':''):'')+'" data-yn="'+field+'|'+val+'">'+label+'</button>'; }
+  function drawBill(e){
+    var jb=job(e.job), st=billStatus(e), meta=stepsForBill(e), N=meta.length;
+    $("bd-id").textContent=e.id;
+    $("bd-sub").textContent=e.job+"  ·  "+jb.cust+"  ·  "+jb.type;
+    var bc='<div class="steps">';
+    meta.forEach(function(s,i){
+      var done=stepDoneBill(e,s.n), active=bdraw.step===s.n, clk=canStepBill(e,s.n)&&!active;
+      bc+='<div class="stp'+(active?' active':(done?' done':''))+(clk?' clk':'')+'" data-bstep="'+s.n+'"><span class="bub">'+s.n+'</span><span class="lb">'+s.k+'</span></div>';
+      if(i<meta.length-1) bc+='<span class="stp-ln'+(done?' fill':'')+'"></span>';
+    });
+    bc+='</div>';
+    var step=bdraw.step, tag='Step '+step+' of '+N, title='', body='';
+    if(step===1){
+      title='Project invoice';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">The invoice you raised in your own system, and the contract it belongs to.</div>'
+        +'<div class="recap"><div class="rr"><span class="l">Internal invoice #</span><span class="v mono">'+esc(e.id)+'</span></div>'
+        +'<div class="rr"><span class="l">Project / contract</span><span class="v mono">'+esc(e.job)+'</span></div>'
+        +'<div class="rr"><span class="l">Customer</span><span class="v">'+esc(jb.cust)+'</span></div>'
+        +'<div class="rr"><span class="l">Contracted scope</span><span class="v">'+esc(jb.type)+'</span></div>'
+        +'<div class="rr"><span class="l">Contract value</span><span class="v">'+money(jb.contract)+'</span></div>'
+        +'<div class="rr"><span class="l">Invoice amount</span><span class="v">'+money(e.amt)+'</span></div>'
+        +'<div class="rr"><span class="l">Invoice document</span><span class="v">'+docChip(e.invDoc)+'</span></div></div>'
+        +'<div class="wnav"><span></span><button class="btn" data-badv="2">Continue to scope check</button></div></div>';
+    } else if(step===2){
+      title='Scope check';
+      var q='<div class="qblk"><div class="qlabel">Were all contracted tasks performed?</div><div class="ynrow">'+ynBtn(e,"allDone","y","Yes")+ynBtn(e,"allDone","n","No")+'</div></div>';
+      if(e.allDone===false){
+        q+='<div class="qblk"><div class="qlabel">Does this affect the amount billed?</div><div class="ynrow">'+ynBtn(e,"affects","y","Yes")+ynBtn(e,"affects","n","No")+'</div>'
+          +'<div class="f" style="margin-top:10px"><label for="bd-note">Note (what was not performed)</label><textarea id="bd-note" placeholder="optional">'+esc(e.note||"")+'</textarea></div></div>';
+      } else if(e.allDone===true){
+        q+='<div class="qblk"><div class="qlabel">Were additional tasks performed beyond the contract?</div><div class="ynrow">'+ynBtn(e,"addl","y","Yes")+ynBtn(e,"addl","n","No")+'</div></div>';
+        if(e.addl===true){
+          q+='<div class="qblk"><div class="qlabel">What additional work was performed?</div><div class="f"><textarea id="bd-tasks" placeholder="Describe the extra tasks">'+esc(e.addlTasks||"")+'</textarea></div></div>'
+            +'<div class="qblk"><div class="qlabel">Are these additional tasks on the customer invoice?</div><div class="ynrow">'+ynBtn(e,"reflected","y","Yes")+ynBtn(e,"reflected","n","No")+'</div></div>';
+        }
+      }
+      var ready=scopeComplete(e);
+      body='<div class="dblk-b">'+q+'<div class="wnav"><button class="lnk" data-badv="1">Back</button>'+(ready?'<button class="btn" data-badv="3">See result</button>':'<span class="none" style="font-size:11.5px">Answer the questions to continue</span>')+'</div></div>';
+    } else if(step===3){
+      title='Result';
+      var res = st.ex
+        ? '<div class="flag"><span class="fi">!</span><div>'+esc(st.msg)+(e.allDone===false&&e.note?'<div style="margin-top:5px;color:var(--muted)">Note: '+esc(e.note)+'</div>':'')+(e.addl===true&&e.addlTasks?'<div style="margin-top:5px;color:var(--muted)">Extra work: '+esc(e.addlTasks)+'</div>':'')+'</div></div>'
+        : '<div class="oknote"><span class="fi">OK</span><div>'+esc(st.msg)+'</div></div>';
+      body='<div class="dblk-b">'
+        +'<div class="recap"><div class="rr"><span class="l">All contracted tasks performed</span><span class="v">'+(e.allDone?"Yes":"No")+'</span></div>'
+        +(e.allDone===false?'<div class="rr"><span class="l">Affects billing</span><span class="v">'+(e.affects?"Yes":"No")+'</span></div>':'')
+        +(e.allDone===true?'<div class="rr"><span class="l">Additional work beyond contract</span><span class="v">'+(e.addl?"Yes":"No")+'</span></div>':'')
+        +(e.addl===true?'<div class="rr"><span class="l">On the customer invoice</span><span class="v">'+(e.reflected?"Yes":"No")+'</span></div>':'')
+        +'</div>'+res
+        +'<div class="wnav"><button class="lnk" data-badv="2">Back</button>'
+        +(st.action==="route"?'<button class="btn" data-badv="4">Email the field team</button>':(st.action==="credit"?'<button class="btn ghost sm" id="bd-done">Mark for correction</button>':'<button class="btn ghost sm" id="bd-done">Done</button>'))
+        +'</div></div>';
+    } else if(step===4){
+      title='Route to field team';
+      var to=routeToBill(e);
+      var route='<div style="font-size:12px;color:var(--ink2);line-height:1.55">Ask the field team for the price of the extra work so Billing can invoice the customer the remaining amount. Your invoice is attached for reference.</div>'
+        +'<div class="dgrid"><div class="f"><label for="bd-toname">Send to (name)</label><input type="text" id="bd-toname" value="'+esc(to.name)+'"></div>'
+        +'<div class="f"><label for="bd-toemail">Send to (email)</label><input type="email" id="bd-toemail" value="'+esc(to.email)+'" placeholder="name@cascadesolarair.com"></div></div>'
+        +'<div class="drow"><span class="l">Cc (Billing)</span><span class="v mono" style="font-weight:600; text-align:right">'+esc(BILL_CC)+'</span></div>'
+        +'<div class="drow"><span class="l">Attachment</span><span class="v">'+docChip(e.invDoc)+'</span></div>';
+      route+= e.sent
+        ? '<div class="sent">Sent to '+esc(to.name)+' · '+esc(e.id)+'</div>'
+        : '<div class="act-row" style="justify-content:flex-start"><button class="btn" id="bd-submit">Send to field team</button></div>';
+      route+='<div style="font-size:10.5px;color:var(--faint)">'+(e.sent?'Sent':'Preview')+' · in production this emails through your mail system with the invoice attached.</div>';
+      route+='<div class="email" id="bd-email">'+esc(billEmail(e))+'</div>';
+      body='<div class="dblk-b">'+route+'<div class="wnav"><button class="lnk" data-badv="3">Back to result</button><span></span></div></div>';
+    }
+    var sw = step===3?(st.ex?'action needed':'matched'):(step===4?'submit':['','invoice','questions'][step]||'');
+    $("bd-body").innerHTML=bc+'<div class="dblk"><div class="dblk-h"><span class="t">'+title+'</span><span class="step">'+tag+(sw?' · '+sw:'')+'</span></div>'+body+'</div>';
+    $("bd-body").querySelectorAll("[data-bstep]").forEach(function(el){ el.addEventListener("click", function(){ setBillStep(parseInt(el.getAttribute("data-bstep"),10)); }); });
+    $("bd-body").querySelectorAll("[data-badv]").forEach(function(el){ el.addEventListener("click", function(){ setBillStep(parseInt(el.getAttribute("data-badv"),10)); }); });
+    $("bd-body").querySelectorAll("[data-yn]").forEach(function(el){ el.addEventListener("click", function(){
+      var parts=el.getAttribute("data-yn").split("|"); e[parts[0]]=(parts[1]==="y"); normBill(e); drawBill(e); refreshAll();
+    }); });
+    if($("bd-note")) $("bd-note").addEventListener("input", function(){ e.note=$("bd-note").value; });
+    if($("bd-tasks")) $("bd-tasks").addEventListener("input", function(){ e.addlTasks=$("bd-tasks").value; var em=$("bd-email"); if(em) em.textContent=billEmail(e); });
+    if($("bd-toname")) $("bd-toname").addEventListener("input", function(){ e.routeName=$("bd-toname").value; var em=$("bd-email"); if(em) em.textContent=billEmail(e); });
+    if($("bd-toemail")) $("bd-toemail").addEventListener("input", function(){ e.routeEmail=$("bd-toemail").value; var em=$("bd-email"); if(em) em.textContent=billEmail(e); });
+    if($("bd-done")) $("bd-done").addEventListener("click", closeBill);
+    if($("bd-submit")) $("bd-submit").addEventListener("click", function(){
+      var nm=$("bd-toname").value.trim(), em=$("bd-toemail").value.trim();
+      if(!em){ $("bill-msg").style.color="var(--bad)"; $("bill-msg").textContent="Enter the email address for the field team."; return; }
+      e.routeName=nm; e.routeEmail=em; e.sent=true; drawBill(e); refreshAll();
+      $("bill-msg").style.color="var(--brand)"; $("bill-msg").textContent=e.id+" sent to "+(nm||em)+" for pricing, CC Billing.";
+    });
+  }
+
+  // ---------- claims ----------
+  var clmFilter="all";
+  function renderClaims(){
+    var open=claims.filter(function(c){ return IN_FLIGHT[c.status]; });
+    var inflightAmt=open.reduce(function(s,c){ return s+c.amt; },0);
+    var overdue=claims.filter(isOverdue);
+    var overdueAmt=overdue.reduce(function(s,c){ return s+c.amt; },0);
+    var rejected=claims.filter(function(c){ return c.status==="Rejected"; });
+    var rejAmt=rejected.reduce(function(s,c){ return s+c.amt; },0);
+    var approved=claims.filter(function(c){ return c.status==="Approved"; });
+    var apprAmt=approved.reduce(function(s,c){ return s+c.amt; },0);
+    var collected=claims.filter(function(c){ return c.status==="Paid"; }).reduce(function(s,c){ return s+c.amt; },0);
+    $("clm-kpis").innerHTML=[
+      {k:"In flight", v:money0(inflightAmt), d:open.length+" open claims", c:""},
+      {k:"Overdue follow-ups", v:overdue.length+"", d:money0(overdueAmt)+" waiting on action", c:"alert"},
+      {k:"Rejected to rework", v:money0(rejAmt), d:rejected.length+" claims", c:"alert"},
+      {k:"Approved, awaiting pay", v:money0(apprAmt), d:"plus "+money0(collected)+" collected", c:"goodk"}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+
+    // aging buckets on open claims
+    var buckets=[["0 to 14 days",0,0,"",0,14],["15 to 30 days",0,0,"warn",15,30],["31 to 60 days",0,0,"warn",31,60],["60+ days",0,0,"bad",61,99999]];
+    open.forEach(function(c){ var a=ageOf(c.updated); buckets.forEach(function(b){ if(a>=b[4]&&a<=b[5]){ b[1]+=c.amt; b[2]+=1; } }); });
+    $("clm-aging").innerHTML='<div class="aging">'+buckets.map(function(b){ return '<div class="ag '+b[3]+'"><div class="agk">'+b[0]+'</div><div class="agv num">'+money(b[1])+'</div><div class="agc">'+b[2]+' claim'+(b[2]===1?'':'s')+'</div></div>'; }).join("")+'</div>';
+
+    var list=claims.slice();
+    if(clmFilter==="action") list=list.filter(needsAction);
+    list.sort(function(a,b){ return (needsAction(b)?1:0)-(needsAction(a)?1:0) || b.amt-a.amt; });
+    $("clm-count").textContent=list.length+" claim"+(list.length===1?'':'s')+(clmFilter==="action"?" needing action":"");
+    var rows='<tr><th>Claim</th><th>Customer</th><th>Program</th><th>Portal</th><th class="r">Amount</th><th>Status</th><th>Next follow-up</th><th class="r"></th></tr>';
+    list.forEach(function(c){
+      var fu='';
+      if(c.status==="Paid") fu='<span class="none">closed</span>';
+      else if(isOverdue(c)) fu='<span class="tag bad"><span class="d"></span>overdue '+Math.abs(daysTo(c.followup))+'d</span>';
+      else if(c.followup) fu='<span class="idcell">'+esc(c.followup)+' <span style="color:var(--faint)">(in '+daysTo(c.followup)+'d)</span></span>';
+      else fu='<span class="none">-</span>';
+      var reason=c.reason?'<div class="idcell" style="color:var(--bad); margin-top:2px">'+esc(c.reason)+'</div>':'';
+      rows+='<tr class="clickrow" data-reb-open="'+c.id+'"><td class="mono idcell strong">'+esc(c.id)+'</td><td class="strong">'+esc(c.cust)+reason+'</td><td>'+esc(c.program)+'<div class="idcell">'+esc(c.mfr||"")+(c.model?' '+esc(c.model):'')+'</div></td><td><span class="prog"><span class="pm">'+esc(c.portal)+'</span></span></td>'
+        +'<td class="r num strong">'+money(c.amt)+'</td><td>'+clmTag(c.status)+'</td><td>'+fu+'</td><td class="r"><button class="btn ghost sm" data-reb-open="'+c.id+'">Open</button></td></tr>';
+    });
+    $("clm-tbl").innerHTML=rows;
+    $("clm-tbl").querySelectorAll("[data-reb-open]").forEach(function(b){ b.addEventListener("click", function(ev){ ev.stopPropagation(); openReb(b.getAttribute("data-reb-open")); }); });
+  }
+  function clmfind(id){ for(var i=0;i<claims.length;i++) if(claims[i].id===id) return claims[i]; return null; }
+  function addDays(d,n){ var t=new Date(d+"T00:00:00"); t.setDate(t.getDate()+n); return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0"); }
+  function initClaims(){
+    $("reb-new").addEventListener("click", function(){
+      var id="CLM-"+(clmSeq++);
+      claims.push({id:id, cust:"", custPhone:"", custEmail:"", program:"SGIP (battery)", portal:"SGIP PA", type:"Rebate", mfr:"", model:"", serial:"", purchaseDate:"", installDate:"", expireDate:"", invoiceDoc:"", installDoc:"", offerNo:"", amt:0, payInfo:"", submitted:"", status:"Draft", updated:ASOF, followup:"", reason:"", posted:false});
+      refreshAll(); openReb(id);
+    });
+    $("clm-filter").addEventListener("click", function(){ clmFilter=(clmFilter==="all")?"action":"all"; $("clm-filter").textContent=(clmFilter==="all")?"Show: all rebates":"Show: needs action"; renderClaims(); });
+    $("reb-scrim").addEventListener("click", closeReb);
+    $("rd-close").addEventListener("click", closeReb);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeReb(); });
+  }
+
+  // ---------- rebate wizard drawer ----------
+  var rdraw={id:null, step:1};
+  var REB_STEPS=[{n:1,k:"Customer"},{n:2,k:"Dates & docs"},{n:3,k:"Rebate"},{n:4,k:"Status"}];
+  function rebStepDone(c,n){ if(n===1) return !!(c.cust&&c.mfr&&c.model); if(n===2) return !!(c.purchaseDate||c.invoiceDoc); if(n===3) return !!(c.offerNo||c.amt>0); if(n===4) return c.status!=="Draft"; return false; }
+  function firstRebStep(c){ return c.status==="Draft"?1:4; }
+  function openReb(id){ var c=clmfind(id); if(!c) return; rdraw.id=id; rdraw.step=firstRebStep(c); drawReb(c); $("reb-scrim").classList.add("on"); $("reb-drawer").classList.add("on"); $("reb-drawer").setAttribute("aria-hidden","false"); }
+  function closeReb(){ rdraw.id=null; $("reb-scrim").classList.remove("on"); $("reb-drawer").classList.remove("on"); $("reb-drawer").setAttribute("aria-hidden","true"); }
+  function setRebStep(n){ var c=clmfind(rdraw.id); if(!c) return; rdraw.step=n; drawReb(c); var b=$("rd-body"); if(b) b.scrollTop=0; }
+  function drawReb(c){
+    $("rd-id").textContent=c.id;
+    $("rd-sub").textContent=(c.cust||"New rebate")+"  ·  "+c.program;
+    var bc='<div class="steps">';
+    REB_STEPS.forEach(function(s,i){
+      var done=rebStepDone(c,s.n), active=rdraw.step===s.n;
+      bc+='<div class="stp'+(active?' active':(done?' done':''))+(active?'':' clk')+'" data-rstep="'+s.n+'"><span class="bub">'+s.n+'</span><span class="lb">'+s.k+'</span></div>';
+      if(i<REB_STEPS.length-1) bc+='<span class="stp-ln'+(done?' fill':'')+'"></span>';
+    });
+    bc+='</div>';
+    var st=rdraw.step, title='', sub='', body='';
+    if(st===1){
+      title='Customer & equipment'; sub='who and what';
+      var progOpts=Object.keys(REB_PROGRAMS).map(function(pg){ return '<option'+(pg===c.program?' selected':'')+'>'+pg+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Who the rebate is for, the program, and the equipment that qualifies.</div>'
+        +'<div class="f"><label for="rd-cust">Customer name</label><input type="text" id="rd-cust" value="'+esc(c.cust)+'" placeholder="e.g. Nguyen Residence"></div>'
+        +'<div class="dgrid"><div class="f"><label for="rd-phone">Customer phone</label><input type="text" id="rd-phone" value="'+esc(c.custPhone||"")+'" placeholder="(555) 555-0123"></div>'
+        +'<div class="f"><label for="rd-email">Customer email</label><input type="email" id="rd-email" value="'+esc(c.custEmail||"")+'" placeholder="name@example.com"></div></div>'
+        +'<div class="f"><label for="rd-prog">Rebate program</label><select id="rd-prog">'+progOpts+'</select></div>'
+        +'<div class="dgrid"><div class="f"><label for="rd-mfr">Equipment manufacturer</label><input type="text" id="rd-mfr" value="'+esc(c.mfr||"")+'" placeholder="e.g. Enphase"></div>'
+        +'<div class="f"><label for="rd-model">Model number</label><input type="text" id="rd-model" value="'+esc(c.model||"")+'" placeholder="model #"></div></div>'
+        +'<div class="f"><label for="rd-serial">Serial number</label><input type="text" id="rd-serial" value="'+esc(c.serial||"")+'" placeholder="serial #"></div>'
+        +'<div class="wnav"><span></span><button class="btn" data-radv="2">Continue</button></div></div>';
+    } else if(st===2){
+      title='Dates & documents'; sub='eligibility';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Dates that decide eligibility, and the proof the program requires.</div>'
+        +'<div class="dgrid"><div class="f"><label for="rd-pdate">Purchase date</label><input type="date" id="rd-pdate" value="'+esc(c.purchaseDate||"")+'"></div>'
+        +'<div class="f"><label for="rd-idate">Installation date</label><input type="date" id="rd-idate" value="'+esc(c.installDate||"")+'"></div></div>'
+        +'<div class="f"><label for="rd-exp">Rebate expiration date</label><input type="date" id="rd-exp" value="'+esc(c.expireDate||"")+'"></div>'
+        +'<div class="dgrid"><div class="f"><label for="rd-inv">Purchase invoice</label><input type="file" id="rd-inv" accept=".pdf,.png,.jpg,.jpeg"><div class="drow" style="margin-top:6px"><span class="l">On file</span><span class="v">'+docChip(c.invoiceDoc)+'</span></div></div>'
+        +'<div class="f"><label for="rd-instdoc">Installation documentation</label><input type="file" id="rd-instdoc" accept=".pdf,.png,.jpg,.jpeg"><div class="drow" style="margin-top:6px"><span class="l">On file</span><span class="v">'+docChip(c.installDoc)+'</span></div></div></div>'
+        +'<div class="wnav"><button class="lnk" data-radv="1">Back</button><button class="btn" data-radv="3">Continue</button></div></div>';
+    } else if(st===3){
+      title='Rebate details'; sub='the money';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">The offer, the amount, how the customer gets paid, and when it was filed.</div>'
+        +'<div class="dgrid"><div class="f"><label for="rd-offer">Rebate offer / reference number</label><input type="text" id="rd-offer" value="'+esc(c.offerNo||"")+'" placeholder="program offer #"></div>'
+        +'<div class="f"><label for="rd-amt">Rebate amount ($)</label><input type="number" id="rd-amt" min="0" step="0.01" value="'+(c.amt||"")+'" placeholder="expected rebate"></div></div>'
+        +'<div class="f"><label for="rd-pay">Customer payment information</label><input type="text" id="rd-pay" value="'+esc(c.payInfo||"")+'" placeholder="how the provider pays the customer"></div>'
+        +'<div class="f"><label for="rd-subd">Submission date</label><input type="date" id="rd-subd" value="'+esc(c.submitted||"")+'"></div>'
+        +'<div class="wnav"><button class="lnk" data-radv="2">Back</button><button class="btn" data-radv="4">Review</button></div></div>';
+    } else {
+      title='Status & submit'; sub=(c.status==="Draft"?'ready to file':'tracking');
+      var statusOpts=REB_STATUSES.map(function(s){ return '<option'+(s===c.status?' selected':'')+'>'+s+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div class="recap"><div class="rr"><span class="l">Customer</span><span class="v">'+esc(c.cust||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Program / portal</span><span class="v">'+esc(c.program)+' · '+esc(c.portal)+'</span></div>'
+        +'<div class="rr"><span class="l">Equipment</span><span class="v">'+esc(c.mfr||"-")+' '+esc(c.model||"")+'</span></div>'
+        +'<div class="rr"><span class="l">Offer #</span><span class="v mono">'+esc(c.offerNo||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Rebate amount</span><span class="v">'+money(c.amt||0)+'</span></div>'
+        +'<div class="rr"><span class="l">Documents</span><span class="v">'+[c.invoiceDoc,c.installDoc].filter(Boolean).length+' of 2 attached</span></div></div>'
+        +(c.reason?'<div class="flag"><span class="fi">!</span><div>'+esc(c.reason)+'</div></div>':'')
+        +'<div class="dgrid"><div class="f"><label for="rd-status">Rebate status</label><select id="rd-status">'+statusOpts+'</select></div>'
+        +'<div class="f"><label for="rd-fu">Next follow-up</label><input type="date" id="rd-fu" value="'+esc(c.followup||"")+'"></div></div>'
+        +(c.status==="Paid"&&c.posted?'<div class="oknote"><span class="fi">OK</span><div>Marked paid and posted to Reconciliation as a '+money(c.amt)+' deposit.</div></div>':'')
+        +'<div class="wnav"><button class="lnk" data-radv="3">Back</button><button class="btn" id="rd-save">'+(c.status==="Draft"?"Submit rebate":"Save")+'</button></div></div>';
+    }
+    $("rd-body").innerHTML=bc+'<div class="dblk"><div class="dblk-h"><span class="t">'+title+'</span><span class="step">Step '+st+' of 4'+(sub?' · '+sub:'')+'</span></div>'+body+'</div>';
+    $("rd-body").querySelectorAll("[data-rstep]").forEach(function(el){ el.addEventListener("click", function(){ setRebStep(parseInt(el.getAttribute("data-rstep"),10)); }); });
+    $("rd-body").querySelectorAll("[data-radv]").forEach(function(el){ el.addEventListener("click", function(){ setRebStep(parseInt(el.getAttribute("data-radv"),10)); }); });
+    function bind(id,field,re){ var el=$(id); if(el) el.addEventListener(re||"input", function(){ c[field]=el.value; }); }
+    bind("rd-cust","cust"); bind("rd-phone","custPhone"); bind("rd-email","custEmail");
+    bind("rd-mfr","mfr"); bind("rd-model","model"); bind("rd-serial","serial");
+    bind("rd-pdate","purchaseDate","change"); bind("rd-idate","installDate","change"); bind("rd-exp","expireDate","change");
+    bind("rd-offer","offerNo"); bind("rd-pay","payInfo"); bind("rd-subd","submitted","change"); bind("rd-fu","followup","change");
+    if($("rd-prog")) $("rd-prog").addEventListener("change", function(){ c.program=$("rd-prog").value; c.portal=REB_PROGRAMS[c.program]||"Portal"; });
+    if($("rd-amt")) $("rd-amt").addEventListener("input", function(){ c.amt=parseFloat($("rd-amt").value)||0; });
+    if($("rd-inv")) $("rd-inv").addEventListener("change", function(){ var d=pickName("rd-inv"); if(d){ c.invoiceDoc=d; drawReb(c); } });
+    if($("rd-instdoc")) $("rd-instdoc").addEventListener("change", function(){ var d=pickName("rd-instdoc"); if(d){ c.installDoc=d; drawReb(c); } });
+    if($("rd-status")) $("rd-status").addEventListener("change", function(){
+      c.status=$("rd-status").value; c.updated=ASOF; if(c.status!=="Rejected") c.reason="";
+      if(c.status==="Paid"&&!c.posted){ c.posted=true; c.followup=""; recon.push({id:recSeq++, date:ASOF, desc:c.portal+" rebate deposit, "+c.cust, type:"deposit", amt:c.amt, match:c.id, status:"Reconciled"}); }
+      drawReb(c); refreshAll();
+    });
+    if($("rd-save")) $("rd-save").addEventListener("click", function(){
+      if(!c.cust){ $("clm-msg").style.color="var(--bad)"; $("clm-msg").textContent=c.id+": enter the customer name (step 1)."; setRebStep(1); return; }
+      if(!(c.amt>0)){ $("clm-msg").style.color="var(--bad)"; $("clm-msg").textContent=c.id+": enter the rebate amount (step 3)."; setRebStep(3); return; }
+      if(c.status==="Draft"){ c.status="Submitted"; if(!c.submitted) c.submitted=ASOF; if(!c.followup) c.followup=addDays(ASOF,14); }
+      c.updated=ASOF; drawReb(c); refreshAll();
+      $("clm-msg").style.color="var(--good)"; $("clm-msg").textContent=c.id+" saved to the "+c.portal+" portal queue.";
+    });
+  }
+
+  // ---------- warranty claims ----------
+  function renderWarranty(){
+    var open=warranties.filter(function(w){ return WTY_OPEN[w.status]; });
+    var awaiting=warranties.filter(function(w){ return w.status==="Submitted"||w.status==="Acknowledged"; });
+    var approved=warranties.filter(function(w){ return w.status==="Approved"; });
+    var overdue=warranties.filter(wtyOverdue);
+    var rejected=warranties.filter(function(w){ return w.status==="Rejected"; });
+    $("wty-kpis").innerHTML=[
+      {k:"Open warranties", v:open.length+"", d:"RMAs in progress", c:""},
+      {k:"Awaiting vendor", v:awaiting.length+"", d:"submitted or acknowledged", c:"warnk"},
+      {k:"Rejected to rework", v:rejected.length+"", d:"need a resubmit", c:"alert"},
+      {k:"Overdue follow-ups", v:overdue.length+"", d:"past the check date", c:(overdue.length?"alert":"goodk")}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+
+    var list=warranties.slice().sort(function(a,b){ return (wtyNeedsAction(b)?1:0)-(wtyNeedsAction(a)?1:0) || (WTY_OPEN[b.status]?1:0)-(WTY_OPEN[a.status]?1:0); });
+    $("wty-count").textContent=warranties.length+" warranty claim"+(warranties.length===1?'':'s');
+    var rows='<tr><th>Claim #</th><th>Customer</th><th>Equipment</th><th>Issue</th><th>Portal</th><th>Status</th><th>Next follow-up</th><th class="r"></th></tr>';
+    list.forEach(function(w){
+      var jb=job(w.job);
+      var fu = w.status==="Resolved" ? '<span class="none">closed</span>'
+        : wtyOverdue(w) ? '<span class="tag bad"><span class="d"></span>overdue '+Math.abs(daysTo(w.followup))+'d</span>'
+        : w.followup ? '<span class="idcell">'+esc(w.followup)+'</span>' : '<span class="none">-</span>';
+      var reason = w.reason ? '<div class="idcell" style="color:var(--bad); margin-top:2px">'+esc(w.reason)+'</div>' : '';
+      rows+='<tr class="clickrow" data-wty-open="'+w.id+'"><td class="mono idcell strong">'+esc(w.id)+'</td>'
+        +'<td class="strong">'+esc(jb?jb.cust:"-")+reason+'</td>'
+        +'<td>'+esc(w.mfr)+'<div class="idcell">'+esc(w.model)+'</div></td>'
+        +'<td style="max-width:260px"><div style="white-space:normal; line-height:1.4">'+esc(w.issue)+'</div></td>'
+        +'<td><span class="prog"><span class="pm">'+esc(w.portal)+'</span></span></td>'
+        +'<td>'+wtyTag(w.status)+'</td><td>'+fu+'</td>'
+        +'<td class="r"><button class="btn ghost sm" data-wty-open="'+w.id+'">Open</button></td></tr>';
+    });
+    $("wty-tbl").innerHTML=rows;
+    $("wty-tbl").querySelectorAll("[data-wty-open]").forEach(function(b){ b.addEventListener("click", function(ev){ ev.stopPropagation(); openWty(b.getAttribute("data-wty-open")); }); });
+  }
+  function initWarranty(){
+    $("wty-new").addEventListener("click", function(){
+      var id="WTY-"+(wtySeq++);
+      warranties.push({id:id, job:jobs[0].id, mfr:"", model:"", serial:"", purchaseDate:"", installDate:"", regNo:"", proofDoc:"", installDoc:"", issue:"", issueDate:"", mediaDoc:"", history:"", portal:"Enphase", status:"Draft", submitted:"", updated:ASOF, followup:"", reason:""});
+      refreshAll(); openWty(id);
+    });
+    $("wty-scrim").addEventListener("click", closeWty);
+    $("wd-close").addEventListener("click", closeWty);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeWty(); });
+  }
+
+  // ---------- warranty intake drawer ----------
+  var wdraw={id:null, step:1};
+  var WTY_STEPS=[{n:1,k:"Equipment"},{n:2,k:"Purchase"},{n:3,k:"Issue"},{n:4,k:"Submit"}];
+  function wtyStepDone(w,n){ if(n===1) return !!(w.mfr&&w.model&&w.serial); if(n===2) return !!(w.purchaseDate||w.installDate||w.proofDoc||w.installDoc); if(n===3) return !!w.issue; if(n===4) return w.status!=="Draft"; return false; }
+  function firstWtyStep(w){ return w.status==="Draft"?1:4; }
+  function openWty(id, step){ var w=wtyfind(id); if(!w) return; wdraw.id=id; wdraw.step=step||firstWtyStep(w); drawWty(w); $("wty-scrim").classList.add("on"); $("wty-drawer").classList.add("on"); $("wty-drawer").setAttribute("aria-hidden","false"); }
+  function closeWty(){ wdraw.id=null; $("wty-scrim").classList.remove("on"); $("wty-drawer").classList.remove("on"); $("wty-drawer").setAttribute("aria-hidden","true"); }
+  function setWtyStep(n){ var w=wtyfind(wdraw.id); if(!w) return; wdraw.step=n; drawWty(w); var b=$("wd-body"); if(b) b.scrollTop=0; }
+  function drawWty(w){
+    var jb=job(w.job);
+    $("wd-id").textContent=w.id;
+    $("wd-sub").textContent=(w.mfr||"New warranty claim")+(w.model?"  ·  "+w.model:"")+(jb?"  ·  "+jb.cust:"");
+    // breadcrumb
+    var bc='<div class="steps">';
+    WTY_STEPS.forEach(function(s,i){
+      var done=wtyStepDone(w,s.n), active=wdraw.step===s.n;
+      bc+='<div class="stp'+(active?' active':(done?' done':''))+(active?'':' clk')+'" data-wstep="'+s.n+'"><span class="bub">'+s.n+'</span><span class="lb">'+s.k+'</span></div>';
+      if(i<WTY_STEPS.length-1) bc+='<span class="stp-ln'+(done?' fill':'')+'"></span>';
+    });
+    bc+='</div>';
+    var st=wdraw.step, title='', sub='', body='';
+    if(st===1){
+      title='Equipment'; sub='what failed';
+      var jobOpts=jobs.map(function(j){ return '<option value="'+j.id+'"'+(j.id===w.job?' selected':'')+'>'+j.id+' '+esc(j.cust)+'</option>'; }).join("");
+      var portalOpts=WTY_PORTALS.map(function(pt){ return '<option'+(pt===w.mfr?' selected':'')+'>'+pt+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Identify the equipment and the customer it belongs to.</div>'
+        +'<div class="f"><label for="wd-job">Customer / project</label><select id="wd-job">'+jobOpts+'</select></div>'
+        +'<div class="dgrid"><div class="f"><label for="wd-mfr-sel">Equipment manufacturer</label><select id="wd-mfr-sel">'+portalOpts+'</select></div>'
+        +'<div class="f"><label for="wd-model">Model number</label><input type="text" id="wd-model" value="'+esc(w.model)+'" placeholder="model #"></div></div>'
+        +'<div class="f"><label for="wd-serial">Serial number</label><input type="text" id="wd-serial" value="'+esc(w.serial)+'" placeholder="serial #"></div>'
+        +'<div class="wnav"><span></span><button class="btn" data-wadv="2">Continue</button></div></div>';
+    } else if(st===2){
+      title='Purchase & installation'; sub='eligibility';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Dates and documents that establish warranty eligibility.</div>'
+        +'<div class="dgrid"><div class="f"><label for="wd-pdate">Date of purchase</label><input type="date" id="wd-pdate" value="'+esc(w.purchaseDate)+'"></div>'
+        +'<div class="f"><label for="wd-idate">Installation date</label><input type="date" id="wd-idate" value="'+esc(w.installDate)+'"></div></div>'
+        +'<div class="f"><label for="wd-reg">Warranty registration number</label><input type="text" id="wd-reg" value="'+esc(w.regNo)+'" placeholder="if registered"></div>'
+        +'<div class="dgrid"><div class="f"><label for="wd-proof">Proof of purchase</label><input type="file" id="wd-proof" accept=".pdf,.png,.jpg,.jpeg"><div class="drow" style="margin-top:6px"><span class="l">On file</span><span class="v">'+docChip(w.proofDoc)+'</span></div></div>'
+        +'<div class="f"><label for="wd-install">Installation documentation</label><input type="file" id="wd-install" accept=".pdf,.png,.jpg,.jpeg"><div class="drow" style="margin-top:6px"><span class="l">On file</span><span class="v">'+docChip(w.installDoc)+'</span></div></div></div>'
+        +'<div class="wnav"><button class="lnk" data-wadv="1">Back</button><button class="btn" data-wadv="3">Continue</button></div></div>';
+    } else if(st===3){
+      title='The issue'; sub='failure record';
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">What failed, when, and the evidence the vendor needs.</div>'
+        +'<div class="f"><label for="wd-issue">Description of the issue</label><textarea id="wd-issue" placeholder="What malfunctioned or failed">'+esc(w.issue)+'</textarea></div>'
+        +'<div class="dgrid"><div class="f"><label for="wd-idate2">Date the issue occurred</label><input type="date" id="wd-idate2" value="'+esc(w.issueDate)+'"></div>'
+        +'<div class="f"><label for="wd-media">Photos / videos</label><input type="file" id="wd-media" accept=".pdf,.png,.jpg,.jpeg,.mp4,.mov"><div class="drow" style="margin-top:6px"><span class="l">On file</span><span class="v">'+docChip(w.mediaDoc)+'</span></div></div></div>'
+        +'<div class="f"><label for="wd-hist">Service history</label><textarea id="wd-hist" placeholder="Previous repairs and maintenance">'+esc(w.history)+'</textarea></div>'
+        +'<div class="wnav"><button class="lnk" data-wadv="2">Back</button><button class="btn" data-wadv="4">Review</button></div></div>';
+    } else {
+      title='Review & submit'; sub=(w.status==="Draft"?'ready to file':'status');
+      var statusOpts=WTY_STATUSES.map(function(s){ return '<option'+(s===w.status?' selected':'')+'>'+s+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div class="recap"><div class="rr"><span class="l">Equipment</span><span class="v">'+esc(w.mfr||"-")+' '+esc(w.model||"")+'</span></div>'
+        +'<div class="rr"><span class="l">Serial</span><span class="v mono">'+esc(w.serial||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Customer</span><span class="v">'+esc(jb?jb.cust:"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Purchased / installed</span><span class="v">'+esc(w.purchaseDate||"-")+' / '+esc(w.installDate||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Issue date</span><span class="v">'+esc(w.issueDate||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Documents</span><span class="v">'+[w.proofDoc,w.installDoc,w.mediaDoc].filter(Boolean).length+' of 3 attached</span></div></div>'
+        +(w.reason?'<div class="flag"><span class="fi">!</span><div>'+esc(w.reason)+'</div></div>':'')
+        +'<div class="dgrid"><div class="f"><label for="wd-status">Status ('+esc(w.portal)+' portal)</label><select id="wd-status">'+statusOpts+'</select></div>'
+        +'<div class="f"><label for="wd-fu">Next follow-up</label><input type="date" id="wd-fu" value="'+esc(w.followup||"")+'"></div></div>'
+        +'<div class="wnav"><button class="lnk" data-wadv="3">Back</button><button class="btn" id="wd-save">'+(w.status==="Draft"?"Submit warranty claim":"Save")+'</button></div></div>';
+    }
+    $("wd-body").innerHTML=bc+'<div class="dblk"><div class="dblk-h"><span class="t">'+title+'</span><span class="step">Step '+st+' of 4'+(sub?' · '+sub:'')+'</span></div>'+body+'</div>';
+    // nav wiring
+    $("wd-body").querySelectorAll("[data-wstep]").forEach(function(el){ el.addEventListener("click", function(){ setWtyStep(parseInt(el.getAttribute("data-wstep"),10)); }); });
+    $("wd-body").querySelectorAll("[data-wadv]").forEach(function(el){ el.addEventListener("click", function(){ setWtyStep(parseInt(el.getAttribute("data-wadv"),10)); }); });
+    // live bindings (only elements present this step)
+    function bind(id,field,re){ var el=$(id); if(el) el.addEventListener(re||"input", function(){ w[field]=el.value; }); }
+    bind("wd-model","model"); bind("wd-serial","serial"); bind("wd-reg","regNo");
+    bind("wd-pdate","purchaseDate","change"); bind("wd-idate","installDate","change"); bind("wd-idate2","issueDate","change"); bind("wd-fu","followup","change");
+    bind("wd-issue","issue"); bind("wd-hist","history");
+    if($("wd-job")) $("wd-job").addEventListener("change", function(){ w.job=$("wd-job").value; $("wd-sub").textContent=(w.mfr||"New warranty claim")+(w.model?"  ·  "+w.model:"")+"  ·  "+job(w.job).cust; });
+    if($("wd-mfr-sel")) $("wd-mfr-sel").addEventListener("change", function(){ w.mfr=$("wd-mfr-sel").value; w.portal=$("wd-mfr-sel").value; });
+    if($("wd-status")) $("wd-status").addEventListener("change", function(){ w.status=$("wd-status").value; w.updated=ASOF; if(w.status!=="Rejected") w.reason=""; drawWty(w); refreshAll(); });
+    if($("wd-proof")) $("wd-proof").addEventListener("change", function(){ var d=pickName("wd-proof"); if(d){ w.proofDoc=d; drawWty(w); } });
+    if($("wd-install")) $("wd-install").addEventListener("change", function(){ var d=pickName("wd-install"); if(d){ w.installDoc=d; drawWty(w); } });
+    if($("wd-media")) $("wd-media").addEventListener("change", function(){ var d=pickName("wd-media"); if(d){ w.mediaDoc=d; drawWty(w); } });
+    if($("wd-save")) $("wd-save").addEventListener("click", function(){
+      if(!w.mfr||!w.model||!w.serial){ $("wty-msg").style.color="var(--bad)"; $("wty-msg").textContent=w.id+": enter manufacturer, model and serial number (step 1)."; setWtyStep(1); return; }
+      if(!w.issue){ $("wty-msg").style.color="var(--bad)"; $("wty-msg").textContent=w.id+": describe the issue before submitting (step 3)."; setWtyStep(3); return; }
+      if(w.status==="Draft"){ w.status="Submitted"; w.submitted=ASOF; if(!w.followup) w.followup=addDays(ASOF,14); }
+      w.updated=ASOF; drawWty(w); refreshAll();
+      $("wty-msg").style.color="var(--good)"; $("wty-msg").textContent=w.id+" saved to the "+w.portal+" portal queue.";
+    });
+  }
+
+  // ---------- reimbursements ----------
+  function curAmt(n, cur){ cur=cur||"USD"; var s=Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); return cur==="USD"?"$"+s:s+" "+cur; }
+  function renderReimb(){
+    var open=reimb.filter(function(r){ return REIMB_OPEN[r.status]; });
+    var awaiting=reimb.filter(function(r){ return r.status==="Submitted"; });
+    var approved=reimb.filter(function(r){ return r.status==="Approved"; });
+    var apprAmt=approved.reduce(function(s,r){ return s+(r.approvedAmt||r.amount); },0);
+    var paid=reimb.filter(function(r){ return r.status==="Paid"; }).reduce(function(s,r){ return s+(r.approvedAmt||r.amount); },0);
+    var rejected=reimb.filter(reimbNeedsAction);
+    $("rmb-kpis").innerHTML=[
+      {k:"Open", v:open.length+"", d:"in approval or awaiting pay", c:""},
+      {k:"Awaiting approval", v:awaiting.length+"", d:"submitted by the field", c:"warnk"},
+      {k:"Approved to pay", v:curAmt(apprAmt,"USD"), d:approved.length+" ready for payout", c:"goodk"},
+      {k:"Rejected", v:rejected.length+"", d:"need a resubmit", c:(rejected.length?"alert":"goodk")}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+    var list=reimb.slice().sort(function(a,b){ return (reimbNeedsAction(b)?1:0)-(reimbNeedsAction(a)?1:0) || (REIMB_OPEN[b.status]?1:0)-(REIMB_OPEN[a.status]?1:0); });
+    $("rmb-count").textContent=reimb.length+" reimbursement"+(reimb.length===1?'':'s');
+    var rows='<tr><th>Ref</th><th>Claimant</th><th>Job</th><th>Category</th><th class="r">Amount</th><th>Status</th><th class="r"></th></tr>';
+    list.forEach(function(r){
+      var reason=r.reason?'<div class="idcell" style="color:var(--bad); margin-top:2px">'+esc(r.reason)+'</div>':'';
+      rows+='<tr class="clickrow" data-rmb-open="'+r.id+'"><td class="mono idcell strong">'+esc(r.id)+'</td>'
+        +'<td class="strong">'+esc(r.claimant||"-")+' <span class="tag mut" style="margin-left:2px">'+esc(r.kind)+'</span>'+reason+'</td>'
+        +'<td class="mono idcell">'+esc(r.job||"-")+'</td><td>'+esc(r.category)+'</td>'
+        +'<td class="r num strong">'+curAmt(r.amount, r.currency)+'</td><td>'+reimbTag(r.status)+'</td>'
+        +'<td class="r"><button class="btn ghost sm" data-rmb-open="'+r.id+'">Open</button></td></tr>';
+    });
+    $("rmb-tbl").innerHTML=rows;
+    $("rmb-tbl").querySelectorAll("[data-rmb-open]").forEach(function(b){ b.addEventListener("click", function(ev){ ev.stopPropagation(); openRmb(b.getAttribute("data-rmb-open")); }); });
+    if(cycList.length) renderCycleSummary();
+  }
+
+  // ---------- pay cycle report ----------
+  var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var cycFreq=7, cycList=[];
+  function fmtD(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function labelDate(s){ var a=new Date(s+"T00:00:00"); return MON[a.getMonth()]+" "+a.getDate()+", "+a.getFullYear(); }
+  function labelRange(s,e){ var a=new Date(s+"T00:00:00"), b=new Date(e+"T00:00:00"); return MON[a.getMonth()]+" "+a.getDate()+" - "+MON[b.getMonth()]+" "+b.getDate()+", "+b.getFullYear(); }
+  function payCycles(freq){
+    var ref=new Date(ASOF+"T00:00:00"), off=(ref.getDay()+6)%7;      // days since Monday
+    var start=new Date(ref); start.setDate(ref.getDate()-off);        // Monday of the current week
+    var out=[];
+    for(var i=0;i<8;i++){ var s=new Date(start); s.setDate(start.getDate()-freq*i); var e=new Date(s); e.setDate(s.getDate()+freq-1); out.push({start:fmtD(s), end:fmtD(e)}); }
+    return out;
+  }
+  function cycleItems(c){ return reimb.filter(function(r){ var d=r.submitted||r.expDate; return d && d>=c.start && d<=c.end; }); }
+  function cycAmt(arr){ return arr.reduce(function(s,r){ return s+(r.approvedAmt>0?r.approvedAmt:r.amount); },0); }
+  function curCycle(){ var sel=$("cyc-sel"); var i=sel?parseInt(sel.value,10):0; return cycList[i]||cycList[0]; }
+  function fillCycleSelect(){
+    cycList=payCycles(cycFreq);
+    var sel=$("cyc-sel"); if(!sel) return;
+    sel.innerHTML=cycList.map(function(c,i){ var n=cycleItems(c).length; return '<option value="'+i+'">'+labelRange(c.start,c.end)+(n?"  ("+n+")":"")+'</option>'; }).join("");
+    renderCycleSummary();
+  }
+  function renderCycleSummary(){
+    var el=$("cyc-summary"), c=curCycle(); if(!el||!c) return;
+    var items=cycleItems(c), emp=items.filter(function(r){return r.kind==="employee";}), con=items.filter(function(r){return r.kind==="contractor";});
+    el.innerHTML='<div class="cyc-sum">'
+      +'<div class="cs"><div class="csk">Reimbursements</div><div class="csv num">'+items.length+'</div><div class="csd">'+labelRange(c.start,c.end)+'</div></div>'
+      +'<div class="cs"><div class="csk">Employees</div><div class="csv num">'+curAmt(cycAmt(emp),"USD")+'</div><div class="csd">'+emp.length+' claim'+(emp.length===1?'':'s')+'</div></div>'
+      +'<div class="cs"><div class="csk">Contractors</div><div class="csv num">'+curAmt(cycAmt(con),"USD")+'</div><div class="csd">'+con.length+' claim'+(con.length===1?'':'s')+'</div></div>'
+      +'<div class="cs"><div class="csk">Cycle total</div><div class="csv num">'+curAmt(cycAmt(items),"USD")+'</div><div class="csd">approved or requested</div></div></div>';
+  }
+  function csvCell(v){ v=(v==null?"":String(v)); return '"'+v.replace(/"/g,'""')+'"'; }
+  function dlFile(name, text, mime){
+    try{
+      var blob=new Blob([text],{type:(mime||"text/plain")+";charset=utf-8"});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click();
+      setTimeout(function(){ try{document.body.removeChild(a);}catch(e){} URL.revokeObjectURL(url); },150);
+      return true;
+    }catch(e){ return false; }
+  }
+  function downloadReimbCSV(){
+    var c=curCycle(); if(!c) return; var items=cycleItems(c);
+    var cols=["Reference","Claimant","Type","Employee/Vendor ID","Job","Customer","Category","Description","Expense date","Vendor","Amount requested","Currency","Approved amount","Status","Payment method","Payment date","Payment reference","Submitted"];
+    var rows=[cols.map(csvCell).join(",")];
+    items.forEach(function(r){ var jb=job(r.job);
+      rows.push([r.id,r.claimant,r.kind,r.who,r.job,(jb?jb.cust:""),r.category,r.desc,r.expDate,r.vendor,r.amount,r.currency,(r.approvedAmt>0?r.approvedAmt:""),r.status,r.payMethod,r.payDate,r.payRef,r.submitted].map(csvCell).join(","));
+    });
+    rows.push(""); rows.push(csvCell("Pay cycle")+","+csvCell(labelRange(c.start,c.end)));
+    rows.push(csvCell("Total (approved or requested)")+","+csvCell(curAmt(cycAmt(items),"USD")));
+    var ok=dlFile("reimbursements_"+c.start+"_to_"+c.end+".csv", rows.join("\r\n"), "text/csv");
+    $("rmb-msg").style.color = ok?"var(--good)":"var(--bad)";
+    $("rmb-msg").textContent = ok ? ("Downloaded CSV for "+labelRange(c.start,c.end)+" ("+items.length+" reimbursement"+(items.length===1?'':'s')+").")
+                                  : "This viewer blocked the download; open the file in a browser, or use Printable report.";
+  }
+  function printReport(){
+    var c=curCycle(); if(!c) return; var items=cycleItems(c);
+    var sun='<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.3M12 19.3v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.4 12h2.3M19.3 12h2.3M4.4 19.6l1.6-1.6M18 6l1.6-1.6"/></svg>';
+    function group(arr,label){
+      if(!arr.length) return '';
+      var body=arr.map(function(r){ var jb=job(r.job);
+        return '<tr><td>'+esc(r.id)+'</td><td>'+esc(r.claimant)+'</td><td>'+esc(r.who)+'</td><td>'+esc(r.job)+(jb?' '+esc(jb.cust):'')+'</td><td>'+esc(r.category)+'</td><td>'+esc(r.expDate)+'</td><td>'+esc(r.vendor)+'</td><td>'+esc(r.status)+'</td><td class="r">'+curAmt(r.amount,r.currency)+'</td><td class="r">'+(r.approvedAmt>0?curAmt(r.approvedAmt,r.currency):"-")+'</td></tr>';
+      }).join("");
+      return '<div class="pr-sec">'+label+' ('+arr.length+')</div>'
+        +'<table class="pr-t"><tr><th>Ref</th><th>Claimant</th><th>ID</th><th>Job</th><th>Category</th><th>Expense date</th><th>Vendor</th><th>Status</th><th class="r">Requested</th><th class="r">Approved</th></tr>'
+        +body+'<tr class="tot"><td colspan="9" class="r">Subtotal</td><td class="r">'+curAmt(cycAmt(arr),"USD")+'</td></tr></table>';
+    }
+    var emp=items.filter(function(r){return r.kind==="employee";}), con=items.filter(function(r){return r.kind==="contractor";});
+    var html='<div class="pr-wrap"><div class="pr-top"><div class="pr-brand"><div class="pr-mk">'+sun+'</div><div class="pr-co">Cascade Solar + Air, Inc.<small>Finance Operations</small></div></div>'
+      +'<div class="pr-meta">Reimbursement pay cycle report<br>Generated '+labelDate(ASOF)+'<br>Northern California</div></div>'
+      +'<div class="pr-h1">Reimbursement Pay Cycle Report</div>'
+      +'<div class="pr-sub">'+(cycFreq===7?"Weekly":"Fortnightly")+' cycle: '+labelRange(c.start,c.end)+'  ·  '+items.length+' reimbursement'+(items.length===1?'':'s')+'</div>'
+      +(items.length ? (group(emp,"Employees")+group(con,"Contractors")) : '<div class="pr-sub">No reimbursements were submitted in this cycle.</div>')
+      +'<div class="pr-grand"><span class="l">Total to pay this cycle</span><span class="v">'+curAmt(cycAmt(items),"USD")+'</span></div>'
+      +'<div class="pr-foot">Amounts show the approved reimbursement where set, otherwise the amount requested. Sample data for demonstration. Prototype by Kadeem Haughton.</div></div>';
+    $("print-area").innerHTML=html;
+    window.print();
+    $("rmb-msg").style.color="var(--good)"; $("rmb-msg").textContent="Opened the printable report for "+labelRange(c.start,c.end)+" (save as PDF from the print dialog).";
+  }
+  function initReimb(){
+    fillCycleSelect();
+    $("cyc-sel").addEventListener("change", renderCycleSummary);
+    document.querySelectorAll('#view-reimb [data-freq]').forEach(function(btn){ btn.addEventListener("click", function(){
+      cycFreq=parseInt(btn.getAttribute("data-freq"),10);
+      document.querySelectorAll('#view-reimb [data-freq]').forEach(function(b){ b.classList.toggle("on", b===btn); });
+      fillCycleSelect();
+    }); });
+    $("cyc-csv").addEventListener("click", downloadReimbCSV);
+    $("cyc-print").addEventListener("click", printReport);
+    $("rmb-new").addEventListener("click", function(){
+      var id="RMB-"+(rmbSeq++);
+      reimb.push({id:id, kind:"employee", claimant:"", who:"", job:jobs[0].id, category:"Materials", desc:"", expDate:"", vendor:"", amount:0, currency:"USD", receiptDoc:"", payMethod:"Company card", status:"Draft", approvedAmt:0, payDate:"", payRef:"", submitted:"", updated:ASOF, reason:"", routeName:"", routeEmail:"", sent:false});
+      refreshAll(); openRmb(id);
+    });
+    $("rmb-scrim").addEventListener("click", closeRmb);
+    $("md-close").addEventListener("click", closeRmb);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeRmb(); });
+  }
+
+  // ---------- reimbursement wizard drawer ----------
+  var mdraw={id:null, step:1};
+  var RMB_STEPS=[{n:1,k:"Claimant"},{n:2,k:"Expense"},{n:3,k:"Proof & pay"},{n:4,k:"Approval"}];
+  function rmbStepDone(r,n){ if(n===1) return !!(r.claimant&&r.who); if(n===2) return !!(r.desc&&r.amount>0); if(n===3) return !!r.receiptDoc; if(n===4) return r.status!=="Draft"; return false; }
+  function firstRmbStep(r){ return r.status==="Draft"?1:4; }
+  function openRmb(id){ var r=reimbfind(id); if(!r) return; mdraw.id=id; mdraw.step=firstRmbStep(r); drawRmb(r); $("rmb-scrim").classList.add("on"); $("rmb-drawer").classList.add("on"); $("rmb-drawer").setAttribute("aria-hidden","false"); }
+  function closeRmb(){ mdraw.id=null; $("rmb-scrim").classList.remove("on"); $("rmb-drawer").classList.remove("on"); $("rmb-drawer").setAttribute("aria-hidden","true"); }
+  function setRmbStep(n){ var r=reimbfind(mdraw.id); if(!r) return; mdraw.step=n; drawRmb(r); var b=$("md-body"); if(b) b.scrollTop=0; }
+  function drawRmb(r){
+    $("md-id").textContent=r.id;
+    $("md-sub").textContent=(r.claimant||"New reimbursement")+"  ·  "+r.kind+"  ·  "+r.category;
+    var bc='<div class="steps">';
+    RMB_STEPS.forEach(function(s,i){
+      var done=rmbStepDone(r,s.n), active=mdraw.step===s.n;
+      bc+='<div class="stp'+(active?' active':(done?' done':''))+(active?'':' clk')+'" data-mstep="'+s.n+'"><span class="bub">'+s.n+'</span><span class="lb">'+s.k+'</span></div>';
+      if(i<RMB_STEPS.length-1) bc+='<span class="stp-ln'+(done?' fill':'')+'"></span>';
+    });
+    bc+='</div>';
+    var st=mdraw.step, title='', sub='', body='';
+    if(st===1){
+      title='Claimant'; sub='who is claiming';
+      var jobOpts=jobs.map(function(j){ return '<option value="'+j.id+'"'+(j.id===r.job?' selected':'')+'>'+j.id+' '+esc(j.cust)+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">Is this a contractor or an employee reimbursement?</div>'
+        +'<div class="ynrow"><button class="yn'+(r.kind==="contractor"?" on":"")+'" data-kind="contractor">Contractor</button><button class="yn'+(r.kind==="employee"?" on":"")+'" data-kind="employee">Employee</button></div>'
+        +'<div class="dgrid" style="margin-top:4px"><div class="f"><label for="md-name">Claimant name</label><input type="text" id="md-name" value="'+esc(r.claimant)+'" placeholder="'+(r.kind==="contractor"?"company name":"employee name")+'"></div>'
+        +'<div class="f"><label for="md-who">'+(r.kind==="contractor"?"Vendor ID":"Employee ID")+'</label><input type="text" id="md-who" value="'+esc(r.who)+'" placeholder="'+(r.kind==="contractor"?"VEN-...":"EMP-...")+'"></div></div>'
+        +'<div class="f"><label for="md-job">Customer / job reference</label><select id="md-job">'+jobOpts+'</select></div>'
+        +'<div class="wnav"><span></span><button class="btn" data-madv="2">Continue</button></div></div>';
+    } else if(st===2){
+      title='Expense'; sub='what and how much';
+      var catOpts=REIMB_CATS.map(function(x){ return '<option'+(x===r.category?' selected':'')+'>'+x+'</option>'; }).join("");
+      var curOpts=REIMB_CURR.map(function(x){ return '<option'+(x===r.currency?' selected':'')+'>'+x+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">What was bought, where, when, and how much.</div>'
+        +'<div class="dgrid"><div class="f"><label for="md-cat">Expense category</label><select id="md-cat">'+catOpts+'</select></div>'
+        +'<div class="f"><label for="md-date">Expense date</label><input type="date" id="md-date" value="'+esc(r.expDate)+'"></div></div>'
+        +'<div class="f"><label for="md-desc">Expense description</label><textarea id="md-desc" placeholder="What was purchased and why">'+esc(r.desc)+'</textarea></div>'
+        +'<div class="f"><label for="md-vendor">Vendor / supplier</label><input type="text" id="md-vendor" value="'+esc(r.vendor)+'" placeholder="where it was purchased"></div>'
+        +'<div class="dgrid"><div class="f"><label for="md-amt">Amount requested</label><input type="number" id="md-amt" min="0" step="0.01" value="'+(r.amount||"")+'" placeholder="0.00"></div>'
+        +'<div class="f"><label for="md-cur">Currency</label><select id="md-cur">'+curOpts+'</select></div></div>'
+        +'<div class="wnav"><button class="lnk" data-madv="1">Back</button><button class="btn" data-madv="3">Continue</button></div></div>';
+    } else if(st===3){
+      title='Proof & payment'; sub='evidence';
+      var payOpts=REIMB_PAY.map(function(x){ return '<option'+(x===r.payMethod?' selected':'')+'>'+x+'</option>'; }).join("");
+      body='<div class="dblk-b">'
+        +'<div style="font-size:12px;color:var(--muted);line-height:1.5">The receipt is required before this can be approved.</div>'
+        +'<div class="f"><label for="md-receipt">Receipt / invoice</label><input type="file" id="md-receipt" accept=".pdf,.png,.jpg,.jpeg"><div class="drow" style="margin-top:6px"><span class="l">On file</span><span class="v">'+docChip(r.receiptDoc)+'</span></div></div>'
+        +'<div class="f"><label for="md-method">Payment method</label><select id="md-method">'+payOpts+'</select></div>'
+        +'<div class="wnav"><button class="lnk" data-madv="2">Back</button><button class="btn" data-madv="4">Review</button></div></div>';
+    } else {
+      title='Approval & payment'; sub=(r.status==="Draft"?'submit':'tracking');
+      var statusOpts=REIMB_STATUSES.map(function(s){ return '<option'+(s===r.status?' selected':'')+'>'+s+'</option>'; }).join("");
+      var mTo=reimbRouteTo(r), proc=(r.kind==="contractor"?"accounts payable":"payroll");
+      var mEmail;
+      if(r.receiptDoc){
+        mEmail='<div style="border-top:1px solid var(--line2); margin-top:2px; padding-top:12px"></div>'
+          +'<div class="seclab" style="margin-bottom:2px">Send for payment</div>'
+          +'<div style="font-size:12px;color:var(--ink2);line-height:1.55">All documents are in. Send the reimbursement to whoever processes payment ('+proc+'), with the receipt attached.</div>'
+          +'<div class="dgrid"><div class="f"><label for="md-toname">Send to (name)</label><input type="text" id="md-toname" value="'+esc(mTo.name)+'"></div>'
+          +'<div class="f"><label for="md-toemail">Send to (email)</label><input type="email" id="md-toemail" value="'+esc(mTo.email)+'" placeholder="payroll@cascadesolarair.com"></div></div>'
+          +'<div class="drow"><span class="l">Cc</span><span class="v mono" style="font-weight:600; text-align:right">'+esc(REIMB_CC)+'</span></div>'
+          +'<div class="drow"><span class="l">Attachment</span><span class="v">'+docChip(r.receiptDoc)+'</span></div>'
+          +(r.sent?'<div class="sent">Sent to '+esc(mTo.name)+' · '+esc(r.id)+'</div>':'<div class="act-row" style="justify-content:flex-start"><button class="btn" id="md-send">Send to '+proc+'</button></div>')
+          +'<div style="font-size:10.5px;color:var(--faint)">'+(r.sent?'Sent':'Preview')+' · in production this emails through your mail / payroll system with the receipt attached.</div>'
+          +'<div class="email" id="md-email">'+esc(reimbEmail(r))+'</div>';
+      } else {
+        mEmail='<div class="oknote" style="background:var(--warn-bg); border-color:var(--warn)"><span class="fi" style="color:var(--warn)">i</span><div>Attach the receipt (step 3) to draft the payment email to '+proc+'.</div></div>';
+      }
+      body='<div class="dblk-b">'
+        +'<div class="recap"><div class="rr"><span class="l">Claimant</span><span class="v">'+esc(r.claimant||"-")+' ('+esc(r.kind)+')</span></div>'
+        +'<div class="rr"><span class="l">'+(r.kind==="contractor"?"Vendor ID":"Employee ID")+'</span><span class="v mono">'+esc(r.who||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Job</span><span class="v mono">'+esc(r.job||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Category</span><span class="v">'+esc(r.category)+'</span></div>'
+        +'<div class="rr"><span class="l">Amount requested</span><span class="v">'+curAmt(r.amount, r.currency)+'</span></div>'
+        +'<div class="rr"><span class="l">Vendor</span><span class="v">'+esc(r.vendor||"-")+'</span></div>'
+        +'<div class="rr"><span class="l">Receipt</span><span class="v">'+docChip(r.receiptDoc)+'</span></div></div>'
+        +(r.reason?'<div class="flag"><span class="fi">!</span><div>'+esc(r.reason)+'</div></div>':'')
+        +'<div class="dgrid"><div class="f"><label for="md-status">Approval status</label><select id="md-status">'+statusOpts+'</select></div>'
+        +'<div class="f"><label for="md-appr">Approved amount</label><input type="number" id="md-appr" min="0" step="0.01" value="'+(r.approvedAmt||"")+'" placeholder="0.00"></div></div>'
+        +'<div class="dgrid"><div class="f"><label for="md-pdate">Payment date</label><input type="date" id="md-pdate" value="'+esc(r.payDate||"")+'"></div>'
+        +'<div class="f"><label for="md-pref">Payment reference</label><input type="text" id="md-pref" value="'+esc(r.payRef||"")+'" placeholder="ACH / check #"></div></div>'
+        +mEmail
+        +'<div class="wnav"><button class="lnk" data-madv="3">Back</button><button class="btn" id="md-save">'+(r.status==="Draft"?"Submit reimbursement":"Save")+'</button></div></div>';
+    }
+    $("md-body").innerHTML=bc+'<div class="dblk"><div class="dblk-h"><span class="t">'+title+'</span><span class="step">Step '+st+' of 4'+(sub?' · '+sub:'')+'</span></div>'+body+'</div>';
+    $("md-body").querySelectorAll("[data-mstep]").forEach(function(el){ el.addEventListener("click", function(){ setRmbStep(parseInt(el.getAttribute("data-mstep"),10)); }); });
+    $("md-body").querySelectorAll("[data-madv]").forEach(function(el){ el.addEventListener("click", function(){ setRmbStep(parseInt(el.getAttribute("data-madv"),10)); }); });
+    $("md-body").querySelectorAll("[data-kind]").forEach(function(el){ el.addEventListener("click", function(){ r.kind=el.getAttribute("data-kind"); drawRmb(r); refreshAll(); }); });
+    function bind(id,field,re){ var el=$(id); if(el) el.addEventListener(re||"input", function(){ r[field]=el.value; }); }
+    bind("md-name","claimant"); bind("md-who","who"); bind("md-desc","desc"); bind("md-vendor","vendor");
+    bind("md-date","expDate","change"); bind("md-pdate","payDate","change"); bind("md-pref","payRef");
+    if($("md-job")) $("md-job").addEventListener("change", function(){ r.job=$("md-job").value; });
+    if($("md-cat")) $("md-cat").addEventListener("change", function(){ r.category=$("md-cat").value; });
+    if($("md-cur")) $("md-cur").addEventListener("change", function(){ r.currency=$("md-cur").value; });
+    if($("md-method")) $("md-method").addEventListener("change", function(){ r.payMethod=$("md-method").value; });
+    if($("md-amt")) $("md-amt").addEventListener("input", function(){ r.amount=parseFloat($("md-amt").value)||0; });
+    if($("md-appr")) $("md-appr").addEventListener("input", function(){ r.approvedAmt=parseFloat($("md-appr").value)||0; var em=$("md-email"); if(em) em.textContent=reimbEmail(r); });
+    if($("md-receipt")) $("md-receipt").addEventListener("change", function(){ var d=pickName("md-receipt"); if(d){ r.receiptDoc=d; r.sent=false; drawRmb(r); } });
+    if($("md-toname")) $("md-toname").addEventListener("input", function(){ r.routeName=$("md-toname").value; var em=$("md-email"); if(em) em.textContent=reimbEmail(r); });
+    if($("md-toemail")) $("md-toemail").addEventListener("input", function(){ r.routeEmail=$("md-toemail").value; var em=$("md-email"); if(em) em.textContent=reimbEmail(r); });
+    if($("md-send")) $("md-send").addEventListener("click", function(){
+      var em=$("md-toemail").value.trim(); if(!em){ $("rmb-msg").style.color="var(--bad)"; $("rmb-msg").textContent=r.id+": enter the email address to send to."; return; }
+      r.routeName=$("md-toname").value.trim(); r.routeEmail=em; r.sent=true; drawRmb(r); refreshAll();
+      $("rmb-msg").style.color="var(--brand)"; $("rmb-msg").textContent=r.id+" sent to "+(r.routeName||em)+" for payment, with the receipt attached.";
+    });
+    if($("md-status")) $("md-status").addEventListener("change", function(){
+      r.status=$("md-status").value; r.updated=ASOF; if(r.status!=="Rejected") r.reason="";
+      if((r.status==="Approved"||r.status==="Paid")&&!(r.approvedAmt>0)) r.approvedAmt=r.amount;
+      if(r.status==="Paid"&&!r.payDate) r.payDate=ASOF;
+      drawRmb(r); refreshAll();
+    });
+    if($("md-save")) $("md-save").addEventListener("click", function(){
+      if(!r.claimant||!r.who){ $("rmb-msg").style.color="var(--bad)"; $("rmb-msg").textContent=r.id+": enter the claimant name and ID (step 1)."; setRmbStep(1); return; }
+      if(!(r.amount>0)){ $("rmb-msg").style.color="var(--bad)"; $("rmb-msg").textContent=r.id+": enter the amount requested (step 2)."; setRmbStep(2); return; }
+      if(!r.receiptDoc){ $("rmb-msg").style.color="var(--bad)"; $("rmb-msg").textContent=r.id+": attach the receipt before submitting (step 3)."; setRmbStep(3); return; }
+      if(r.status==="Draft"){ r.status="Submitted"; if(!r.submitted) r.submitted=ASOF; }
+      r.updated=ASOF; drawRmb(r); refreshAll();
+      $("rmb-msg").style.color="var(--good)"; $("rmb-msg").textContent=r.id+" submitted for approval.";
+    });
+  }
+
+  // ---------- reconciliation ----------
+  function renderRecon(){
+    var dep=recon.filter(function(r){ return r.type==="deposit"; }).reduce(function(s,r){ return s+r.amt; },0);
+    var wd=recon.filter(function(r){ return r.type==="withdrawal"; }).reduce(function(s,r){ return s+r.amt; },0);
+    var reconciled=recon.filter(function(r){ return r.status==="Reconciled"; }).length;
+    var review=recon.filter(function(r){ return r.status!=="Reconciled"; });
+    $("rec-kpis").innerHTML=[
+      {k:"Deposits", v:money0(dep), d:"incentive payments in", c:"goodk"},
+      {k:"Payments", v:money0(wd), d:"vendor settlements out", c:""},
+      {k:"Reconciled", v:reconciled+" of "+recon.length, d:"tied to a source", c:""},
+      {k:"To review", v:review.length+"", d:"unmatched or variance", c:"alert"}
+    ].map(function(x){ return '<div class="kpi '+x.c+'"><div class="k"><span class="tick"></span>'+x.k+'</div><div class="v num">'+x.v+'</div><div class="d">'+x.d+'</div></div>'; }).join("");
+
+    var rows='<tr><th>Date</th><th>Description</th><th>Type</th><th class="r">Amount</th><th>Matched to</th><th>Status</th><th class="r">Action</th></tr>';
+    recon.slice().sort(function(a,b){ return a.date<b.date?1:-1; }).forEach(function(r){
+      var st=r.status==="Reconciled"?'<span class="tag good"><span class="d"></span>Reconciled</span>':(r.status==="Variance"?'<span class="tag bad"><span class="d"></span>Variance</span>':'<span class="tag warn"><span class="d"></span>Unmatched</span>');
+      var action=r.status==="Reconciled"?'<span class="none">Done</span>':(r.status==="Variance"?'<button class="btn sm" data-rec-ok="'+r.id+'">Accept &amp; note</button>':'<button class="btn ghost sm" data-rec-match="'+r.id+'">Match</button>');
+      rows+='<tr><td>'+esc(r.date)+'</td><td class="strong">'+esc(r.desc)+'</td><td>'+(r.type==="deposit"?'<span class="tag good"><span class="d"></span>Deposit</span>':'<span class="tag mut"><span class="d"></span>Payment</span>')+'</td>'
+        +'<td class="r num">'+(r.type==="deposit"?money(r.amt):money(-r.amt))+'</td><td class="mono idcell">'+(r.match?esc(r.match):'<span class="none">unassigned</span>')+'</td><td>'+st+'</td><td class="r"><div class="act-row">'+action+'</div></td></tr>';
+    });
+    $("rec-tbl").innerHTML=rows;
+    $("rec-tbl").querySelectorAll("[data-rec-ok]").forEach(function(b){ b.addEventListener("click", function(){ var r=recfind(parseInt(b.getAttribute("data-rec-ok"),10)); if(r){ r.status="Reconciled"; refreshAll(); } }); });
+    $("rec-tbl").querySelectorAll("[data-rec-match]").forEach(function(b){ b.addEventListener("click", function(){ var r=recfind(parseInt(b.getAttribute("data-rec-match"),10)); if(r){ r.status="Reconciled"; r.match="CLM-581"; r.desc="SGIP deposit, Patel (matched)"; refreshAll(); } }); });
+  }
+  function recfind(id){ for(var i=0;i<recon.length;i++) if(recon[i].id===id) return recon[i]; return null; }
+
+  // ---------- nav counts ----------
+  function updateNav(){
+    var poEx=pos.filter(function(p){ return poMatch(p).ex; }).length;
+    var billEx=pinv.filter(function(e){ return billStatus(e).ex; }).length;
+    var clmAct=claims.filter(needsAction).length;
+    var wtyAct=warranties.filter(wtyNeedsAction).length;
+    var reimbAct=reimb.filter(reimbNeedsAction).length;
+    var recRev=recon.filter(function(r){ return r.status!=="Reconciled"; }).length;
+    function set(id,n){ var el=$(id); if(!el) return; if(n>0){ el.textContent=n; el.className="ct"; } else { el.textContent=""; el.className="ct mut"; } }
+    set("nav-po",poEx); set("nav-bill",billEx); set("nav-wty",wtyAct); set("nav-clm",clmAct); set("nav-reimb",reimbAct); set("nav-rec",recRev);
+  }
+
+  function refreshAll(){ renderDash(); renderPO(); renderBilling(); renderWarranty(); renderClaims(); renderReimb(); renderRecon(); updateNav(); }
+
+  // ---------- router ----------
+  var views={dash:"view-dash", po:"view-po", billing:"view-billing", warranty:"view-warranty", claims:"view-claims", reimb:"view-reimb", recon:"view-recon"};
+  function activate(k){ Object.keys(views).forEach(function(v){ $(views[v]).classList.toggle("active", v===k); }); document.querySelectorAll(".nav-i").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-view")===k); }); }
+  function go(k){ activate(k); window.scrollTo(0,0); }
+  document.querySelectorAll(".nav-i").forEach(function(b){ b.addEventListener("click", function(){ go(b.getAttribute("data-view")); }); });
+
+  // ---------- init ----------
+  initPO(); initBill(); initWarranty(); initClaims(); initReimb();
+  if($("theme-toggle")) $("theme-toggle").addEventListener("click", function(){
+    var cur=document.documentElement.getAttribute("data-theme")==="dark"?"dark":"light";
+    var next=cur==="dark"?"light":"dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try{ localStorage.setItem("cs-theme", next); }catch(e){}
+  });
+  refreshAll();
+</script>
+</body>
+</html>
