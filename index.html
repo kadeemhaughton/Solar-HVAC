@@ -386,11 +386,42 @@
   .cell-inp{font-family:inherit; font-size:12.5px; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:4px 7px; width:92px; text-align:right; font-variant-numeric:tabular-nums}
   .cell-inp:focus{outline:1px solid var(--brand); border-color:var(--brand)}
   .none{color:var(--faint); font-size:11.5px}
+
+  /* ---- mobile / responsive shell ---- */
+  .navtoggle{display:none; align-items:center; justify-content:center; width:38px; height:38px; flex:none; border:1px solid var(--line); background:var(--raised); color:var(--ink2); border-radius:9px; cursor:pointer; box-shadow:var(--shadow); transition:background .15s, color .15s}
+  .navtoggle:hover{background:var(--surface); color:var(--ink)}
+  .navtoggle svg{width:20px; height:20px}
+  .side-scrim{position:fixed; inset:0; background:rgba(8,12,20,.5); opacity:0; pointer-events:none; transition:opacity .2s; z-index:55}
+  .side-scrim.on{opacity:1; pointer-events:auto}
+  @media (max-width:860px){
+    .navtoggle{display:inline-flex}
+    .topbar{justify-content:flex-start; padding:10px 14px; padding-right:max(14px,env(safe-area-inset-right,0px))}
+    .topbar .right{margin-left:auto}
+    .side{position:fixed; left:0; top:0; z-index:60; height:100vh; height:100dvh; width:min(286px,84vw); transform:translateX(-100%); transition:transform .24s cubic-bezier(.4,0,.2,1); box-shadow:none}
+    .side.open{transform:none; box-shadow:26px 0 70px rgba(8,12,20,.42)}
+    .main{padding:18px 16px 44px; padding-right:max(16px,env(safe-area-inset-right,0px))}
+    .vhead h1{font-size:20px}
+    .topbar .ctx{font-size:11.5px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  }
+  @media (max-width:560px){
+    .ctx-loc{display:none}
+    .topbar .chip:not(.env){display:none}
+    .topbar{gap:8px}
+    .vhead h1{font-size:18px}
+    .vhead .sub{font-size:12px}
+    .kpi{padding:14px 15px 15px}
+    .kpi .v{font-size:23px}
+    .main{padding:15px 13px 40px}
+    .card-b{padding:14px 13px}
+    .card-h{padding:13px 14px}
+    .card-h h2{font-size:12.5px}
+  }
 </style>
 </head>
 <body>
 <div class="app">
-  <aside class="side">
+  <div class="side-scrim" id="side-scrim"></div>
+  <aside class="side" id="sidebar">
     <div class="brand">
       <span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#7a4a05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.2v2.4M12 19.4v2.4M2.2 12h2.4M19.4 12h2.4M5 5l1.7 1.7M17.3 17.3L19 19M19 5l-1.7 1.7M6.7 17.3L5 19"/></svg></span>
       <span class="nm">Cascade Solar + Air<small>Finance Operations</small></span>
@@ -427,7 +458,8 @@
 
   <div class="body">
     <div class="topbar">
-      <div class="ctx">Entity: <b>Cascade Solar + Air, Inc.</b> &nbsp;&middot;&nbsp; Northern California</div>
+      <button class="navtoggle" id="nav-toggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <div class="ctx">Entity: <b>Cascade Solar + Air, Inc.</b><span class="ctx-loc">&nbsp;&middot;&nbsp; Northern California</span></div>
       <div class="right">
         <span class="chip"><span class="dot"></span>Synced: ServiceTitan + QuickBooks</span>
         <span class="chip">As of <b style="color:var(--ink)">Nov 18, 2026</b></span>
@@ -1824,6 +1856,16 @@
     document.documentElement.setAttribute("data-theme", next);
     try{ localStorage.setItem("cs-theme", next); }catch(e){}
   });
+  (function(){
+    var side=document.getElementById("sidebar"), toggle=document.getElementById("nav-toggle"), scrim=document.getElementById("side-scrim");
+    function closeSide(){ if(side) side.classList.remove("open"); if(scrim) scrim.classList.remove("on"); if(toggle) toggle.setAttribute("aria-expanded","false"); }
+    function openSide(){ if(side) side.classList.add("open"); if(scrim) scrim.classList.add("on"); if(toggle) toggle.setAttribute("aria-expanded","true"); }
+    if(toggle) toggle.addEventListener("click", function(){ (side && side.classList.contains("open")) ? closeSide() : openSide(); });
+    if(scrim) scrim.addEventListener("click", closeSide);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeSide(); });
+    document.querySelectorAll(".nav-i").forEach(function(b){ b.addEventListener("click", closeSide); });
+    window.addEventListener("resize", function(){ if(window.innerWidth>860) closeSide(); });
+  })();
   refreshAll();
 </script>
 </body>
